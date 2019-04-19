@@ -1,0 +1,351 @@
+newdataset<-cbind(scantron.number,student.lastquestion,grade)
+head(newdataset)
+names(newdataset)<-c("Scantron.number", "Student.ID","LastName", "FirstName", "Name","Q45.6pt", "Pink.Card" "Signatures", "Primer.ExCr","notes",  "Correctly Answered", "Incorrectly answered")
+names(newdataset)<-c("Scantron.number", "Student.ID","LastName", "FirstName", "Name","Q45.6pt", "Pink.Card", "Signatures", "Primer.ExCr","notes",  "Correctly Answered", "Incorrectly answered")
+head(newdataset)
+write.csv(newdataset, file="~/Dropbox/Teaching/Biol171/Spring2019/completeExam1.csv")
+complete<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/completeExam1.csv")
+str(complete)
+hist(complete$Total.Exam)
+vioplot(complete$Total.Exam)
+library("vioplots")
+vioplot(complete$Total.Exam)
+library("vioplot")
+vioplot(complete$Total.Exam)
+vioplot(complete$Total.Exam,na.rm=TRUE)
+complete$Total.Exam
+?vioplot
+boxplot(complete$Total.Exam,na.rm=TRUE)
+head(complete$Total)
+head(complete)
+plot(complete$signatures, complete$Total.Exam)
+plot(as.numeric(complete$signatures), as.numeric(complete$Total.Exam)
+)
+plot(as.numeric(complete$Signatures), as.numeric(complete$Total.Exam))
+vioplot(as.numeric(complete$Signatures), as.numeric(complete$Total.Exam))
+table(complete$Signatures,complete$Total.Exam)
+table(complete$Total.Exam,complete$Signatures,)
+table(complete$Total.Exam,complete$Signatures)
+vioplot(a)
+sum(complete$Pink.Card)
+(complete$Pink.Card)
+sum(as.numeric(complete$Pink.Card))
+which(complete$Pink.Card==1)
+length(which(complete$Pink.Card==1))
+sig0<-which(complete$Signatures==0)#
+sig1<-which(complete$Signatures==1)#
+sig2<-which(complete$Signatures==2)#
+sig3<-which(complete$Signatures==3)#
+sig4<-which(complete$Signatures==4)#
+sig6<-which(complete$Signatures==6)
+boxplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1])
+boxplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6])
+length(sig0)
+length(sig1)
+length(sig2)
+sig3<-which(complete$Signatures==3)
+length(sig3)
+sig3<-which(complete$Signatures==3)
+length(sig4)
+length(sig6)
+vioplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6])
+vioplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6],na.rm=2)
+vioplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6],na.rm=TRUE)
+pink.card<-which(complete$Pink.Card==1)#
+nopink.card<-which(complete$Pink.Card==1)
+boxplot(complete$Total.Exam[nopink.card],complete$Total.Exam[pink.card])
+pink.card<-which(complete$Pink.Card==1)
+length(pink.card)
+nopink.card<-which(complete$Pink.Card==1)
+length(nopink.card)
+nopink.card<-which(complete$Pink.Card==0)
+length(nopink.card)
+boxplot(complete$Total.Exam[nopink.card],complete$Total.Exam[pink.card])
+lm(complete$Total.Exam~complete$Pink.Card)
+pinkcard.effect<-lm(complete$Total.Exam~complete$Pink.Card)
+summary(pinkcard.effect)
+numbersession.effect<-lm(complete$Total.exam~complete$Signatures)
+numbersession.effect<-lm(complete$Total.Exam~complete$Signatures)
+summary(numbersessions.effect)
+summary(numbersession.effect)
+extra.credit[pink.card]<-1+complete$Signatures+complete$Primer.ExCr
+extra.credit<-rep(0, length(complete$Pink.Card))
+extra.credit[nopink.card]<-complete$Signatures+complete$Primer.ExCr
+extra.credit[nopink.card]<-complete$Primer.ExCr[nopink.card]
+extra.credit[pink.card]<-1+complete$Signatures[pink.card]+complete$Primer.ExCr[pink.card]
+extra.credit
+write.csv(newdataset, file="~/Dropbox/Teaching/Biol171/Spring2019/completeExam1.csv",na="NA")
+complete<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/completeExam1.csv")#
+sig0<-which(complete$Signatures==0)#58#
+sig1<-which(complete$Signatures==1)#55#
+sig2<-which(complete$Signatures==2)#59#
+sig3<-which(complete$Signatures==3)#35#
+sig4<-which(complete$Signatures==4)#4#
+sig6<-which(complete$Signatures==6)#2#
+#
+pink.card<-which(complete$Pink.Card==1) #164#
+nopink.card<-which(complete$Pink.Card==0 #106)#
+#
+sum(complete$Pink.Card)#
+boxplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6])#
+#
+boxplot(complete$Total.Exam[nopink.card],complete$Total.Exam[pink.card])#
+#
+pinkcard.effect<-lm(complete$Total.Exam~complete$Pink.Card)#
+summary(pinkcard.effect)#
+#
+numbersession.effect<-lm(complete$Total.Exam~complete$Signatures)#
+summary(numbersession.effect)
+head(complete)
+write.csv(newdataset, file="~/Dropbox/Teaching/Biol171/Spring2019/completeExam1.csv",na=NA)
+?write.csv
+read.csv
+?read.csv
+complete<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/completeExam1.csv", na.strings = "NA")
+sig0<-which(complete$Signatures==0)#58#
+sig1<-which(complete$Signatures==1)#55#
+sig2<-which(complete$Signatures==2)#59#
+sig3<-which(complete$Signatures==3)#35#
+sig4<-which(complete$Signatures==4)#4#
+sig6<-which(complete$Signatures==6)#2#
+#
+pink.card<-which(complete$Pink.Card==1) #164#
+nopink.card<-which(complete$Pink.Card==0 #106)#
+#
+sum(complete$Pink.Card)#
+boxplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6])#
+#
+boxplot(complete$Total.Exam[nopink.card],complete$Total.Exam[pink.card])
+pink.card
+nopink.card
+sum(complete$Pink.Card)
+boxplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6])
+extra.credit<-rep(0, length(complete$Pink.Card))#
+extra.credit[pink.card]<-1+complete$Signatures[pink.card]+complete$Primer.ExCr[pink.card]#
+extra.credit[nopink.card]<-complete$Primer.ExCr[nopink.card]
+extra.credit
+is.na(complete$Primer.ExCr[pink.card]==TRUE)
+aux1<-which(is.na(complete$Primer.ExCr[pink.card])==TRUE
+)
+aux1
+library(devtools)
+install_github("revbayes/RevGadgets")
+sample(1:44,44,replace=FALSE)
+install.packages("ape")
+install.packages("geiger")
+install.packages("treeplyr")
+install.packages("devtools")
+library("devtools")
+install_github("juyeda/treeplyr")
+install_github("uyedaj/treeplyr")
+install.packages("phytools")
+library("ape")#
+library("phytools")#
+library("treeplyr")
+setwd("~/Dropbox/nestdivmodel/")
+tree<-read.tree(file="~rawdata/passerine_tree_for_nest_musse.tre")
+setwd("~/Dropbox/nestdivmodel")
+tree<-read.tree(file="~/rawdata/passerine_tree_for_nest_musse.tre")
+tree<-read.tree(file="~~/Dropbox/nestdivmodel/rawdata/passerine_tree_for_nest_musse.tre")
+tree<-read.tree(file="~/Dropbox/nestdivmodel/rawdata/passerine_tree_for_nest_musse.tre")
+tree
+passerine.tree<-read.tree(file="~/Dropbox/nestdivmodel/rawdata/passerine_tree_for_nest_musse.tre")
+plotTree(passerine.tree, type="fan")
+plotTree(passerine.tree, type="fan", lwd=0.2,cex=0.05x)
+plotTree(passerine.tree, type="fan", lwd=0.2,cex=0.05)
+plotTree(passerine.tree, type="fan", lwd=0.02,cex=0.05)
+warnings
+plotTree(passerine.tree, type="fan", lwd=0.1,cex=0.05)
+plotTree(passerine.tree, type="fan", lwd=0.1,cex=0.5)
+?plotTree
+plotTree(passerine.tree, type="fan", lwd=0.1,fsize=0.5)
+plotTree(passerine.tree, type="fan", lwd=0.1,fsize=0.5)
+plotTree(passerine.tree)
+plotTree(passerine.tree,  lwd=0.1,fsize=0.5)
+plotTree(passerine.tree,type="fan" lwd=0.1)
+plotTree(passerine.tree,type="fan", lwd=0.1)
+passerine.data<-read.csv("~/Dropbox/nestdivmodel/rawdata/nest_states.csv",header=TRUE,stringsAsFactors=FALSE)
+head(passerine.data)
+dome<-which(passerine.data[,2]=="dome")
+dome
+length(dome)
+cup<-which(passerine.data[,2]=="cup")
+length(cup)
+cavity<-which(passerine.data[,2]=="cavity")
+length(cavity)
+brood<-which(passerine.data[,2]=="brood parasite")
+length(brood)
+dc<-which(passerine.data[,2]=="cup or dome")#
+cv<- which(passerine.data[,2]=="cavity or cup")#
+dv<-which(passerine.data[,2]=="cavity or dome")
+length(dc)
+length(cv)
+length(dv)
+tree
+make.treedata(passerine.tree,passerine.data)
+new.code<-rep(0,length(passerine.tree$tip.labels))
+length(new.code)
+length(passerine.tree$tip.labels)
+length(passerine.tree$tip.label)
+new.code<-rep(0,length(passerine.tree$tip.label))
+dropping.tips<-passerine.tree$tip.label[brood]
+dropping.tips
+drop.tip(passerine.tree,dropping.tips)
+passerine.tree2<-drop.tip(passerine.tree,dropping.tips)
+new.code<-rep(0,length(passerine.tree$tip.label))#
+new.code[dome]=="1"#
+new.code[cup]=="2"#
+new.code[cavity]=="3"#
+new.code[dc]="(1,2)"#
+new.code[cv]="(2,3)"#
+new.code[dv]="(1,3)"
+new.code<-rep(0,length(passerine.tree$tip.label))#
+new.code[dome]="1"#
+new.code[cup]="2"#
+new.code[cavity]="3"#
+new.code[dc]="(1,2)"#
+new.code[cv]="(2,3)"#
+new.code[dv]="(1,3)"
+zeros<-which(new.code==0)
+zeros
+length(zeros)
+library("ape")#
+library("phytools")#
+library("treeplyr")#
+passerine.tree<-read.tree(file="~/Dropbox/nestdivmodel/rawdata/passerine_tree_for_nest_musse.tre")#3243 tips and 3194 internal nodes#
+plotTree(passerine.tree,type="fan", lwd=0.1)#
+passerine.data<-read.csv("~/Dropbox/nestdivmodel/rawdata/nest_states.csv",header=TRUE,stringsAsFactors=FALSE)#
+brood<-which(passerine.data[,2]=="brood parasite")#18#
+dropping.tips<-passerine.tree$tip.label[brood]#
+passerine.tree2<-drop.tip(passerine.tree,dropping.tips)#
+#
+matched<-make.treedata(passerine.tree2,passerine.data)
+matched
+matched$dat
+dome<-which(matched.dat=="dome") #722
+dome<-which(matched$dat=="dome") #722
+dome
+length(dome)
+cup<-which(matched$dat[,2]=="cup") #1943
+cup<-which(matched$dat=="cup") #1943
+length(cup)
+cavity<-which(matched.dat=="cavity")#458
+cavity<-which(matched$dat=="cavity")#458
+length(cavity)
+dropping.tips
+length(drop.tips)
+length(dropping.tips)
+passerine.tree2
+3243-3225
+length(matched$dat)
+dim(matched$dat)
+dome<-which(matched$dat=="dome") #722#
+cup<-which(matched$dat=="cup") #1943#
+cavity<-which(matched$dat=="cavity")#458#
+#
+dc<-which(matched$dat=="cup or dome") #29#
+cv<- which(matched$dat=="cavity or cup") #60#
+dv<-which(matched$dat=="cavity or dome") #13
+length(dome)
+length(cup)
+length(cavity)
+length(dc)
+length(cv)
+length(dv)
+719+1937+450+29+13
+unique(matched$dat)
+passerine.tree2<-drop.tip(passerine.tree,brood)
+passerine.tree2
+brood
+matched<-make.treedata(passerine.tree2,passerine.data) #3215
+dome<-which(matched$dat=="dome") #722
+length(dome)
+unique(matched$dat)
+?drop.tip
+passerine.data2<-passerine.data[-brood]
+dim(passerine.data2)
+3243+18
+dim(passerine.data)
+passerine.data2<-passerine.data[-brood,]
+dim(passerine.data2)
+matched<-make.treedata(passerine.tree,passerine.data2) #3215
+matched
+unique(matched$dat)
+dome<-which(matched$dat=="dome") #722
+length(dome)
+cup<-which(matched$dat=="cup") #1943
+length(cup)
+cavity<-which(matched$dat=="cavity")#458
+length(cavity)
+dc<-which(matched$dat=="cup or dome") #29
+length(dc)
+0.84*.2+.1+.25
+0.51+0.58*.2
+cv<- which(matched$dat=="cavity or cup") #60
+length(cv)
+dv<-which(matched$dat=="cavity or dome") #13
+dv
+new.code<-rep(0,length(matched$phy$tip.label))
+new.code
+length(new.code)
+new.code[dome]="1"#
+new.code[cup]="2"#
+new.code[cavity]="3"#
+new.code[dc]="(1,2)"#
+new.code[cv]="(2,3)"#
+new.code[dv]="(1,3)"
+new.code
+write.nexus(matched$phy,file="~/Dropbox/nestdivmodel/revcode/basicdata/nesttree.nex")
+write.nexus(matched$phy,file="~/Dropbox/nestdivmodel/revcode/basicdata/nesttree.nex")
+write.table(newcode,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t",row.names=FALSE,col.names=FALSE)
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t",row.names=FALSE,col.names=FALSE)
+new.code<-cbind(matched$phy$tip.label,newcode)
+new.code<-cbind(matched$phy$tip.label,new.code)
+new.code
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t",row.names=FALSE,col.names=FALSE)
+new.code<-rep(0,length(matched$phy$tip.label))#
+new.code[dome]="1"#
+new.code[cup]="2"#
+new.code[cavity]="3"#
+new.code[dc]="(1 2)"#
+new.code[cv]="(2 3)"#
+new.code[dv]="(1 3)"
+new.code<-cbind(matched$phy$tip.label,new.code)
+head(new.code)
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t",row.names=FALSE,col.names=FALSE)
+data
+new.code<-rep(0,length(matched$phy$tip.label))#
+new.code[dome]="1"#
+new.code[cup]="2"#
+new.code[cavity]="3"#
+new.code[dc]="(1 2)"#
+new.code[cv]="(2 3)"#
+new.code[dv]="(1 3)"
+row.names(new.comde)<-matched$phy$tip.label
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t",row.names=FALSE)
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t")
+row.names(new.code)<-matched$phy$tip.label
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t")
+row.names(new.code)<-matched$phy$tip.label
+new.code
+new.code<-rep(0,dim(matched$dat)[1])
+new.code[dome]="1"#
+new.code[cup]="2"#
+new.code[cavity]="3"#
+new.code[dc]="(1 2)"#
+new.code[cv]="(2 3)"#
+new.code[dv]="(1 3)"
+row.names(new.code)<-matched$phy$tip.label
+rownames(new.code)<-matched$phy$tip.label
+new.code
+new.code<-rep(0,dim(matched$dat)[1])#
+new.code[dome]="0"#
+new.code[cup]="1"#
+new.code[cavity]="2"#
+new.code[dc]="(0 1)"#
+new.code[cv]="(1 2)"#
+new.code[dv]="(0 2)"
+new.code<-cbind(matched$phy$tip.label,new.code)
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t")
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t", row.names="FALSE")
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t", row.names=FALSE)
