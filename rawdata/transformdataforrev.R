@@ -1,8 +1,8 @@
 library("ape")
 library("phytools")
 library("treeplyr")
-passerine.tree<-read.tree(file="~/Dropbox/nestdivmodel/rawdata/passerine_tree_for_nest_musse.tre")#3243 tips and 3194 internal nodes
-plotTree(passerine.tree,type="fan", lwd=0.1)
+passerine.tree<-read.tree(file="~/Dropbox/nestdivmodel/rawdata/passerine_tree_for_nest_musse_binary.tre")#3243 tips and 3242 internal nodes
+plotTree(passerine.tree,type="fan", lwd=0.1, fsize=0.03)
 passerine.data<-read.csv("~/Dropbox/nestdivmodel/rawdata/nest_states.csv",header=TRUE,stringsAsFactors=FALSE)
 #removing brood
 brood<-which(passerine.data[,2]=="brood parasite")#18

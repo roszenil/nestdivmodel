@@ -1,0 +1,44 @@
+
+RevBayes version (1.0.11)
+Build from  () on Fri May 31 08:53:14 UTC 2019
+
+Visit the website www.RevBayes.com for more information about RevBayes.
+
+RevBayes is free software released under the GPL license, version 3. Type 'license()' for details.
+
+To quit RevBayes type 'quit()' or 'q()'.
+
+
+> source("cid3state.Rev")
+   Processing file "cid3state.Rev"
+   Attempting to read the contents of file "nesttree.nex"
+   Successfully read file
+   Error:	Argument or label mismatch for function call.
+   Provided call:
+   dnCDBDP (RealPos<constant> 'rootAge',
+            Real[]<deterministic> 'speciationRates',
+            RealPos[]<deterministic> 'extinctionRates',
+            RateMatrix<deterministic> 'Q',
+            Simplex<stochastic> 'pi',
+            Probability<constant> 'delta',
+            RealPos<constant> 'rho' )
+
+   Correct usage is:
+   dnCDBDP (RealPos<any> rootAge/originAge,
+            CladogeneticSpeciationRateMatrix|RealPos[]<any> speciationRates/lambda/cladoEventMap,
+            RealPos[]<any> extinctionRates/mu,
+            RealPos[]<any> psi/phi,
+            RateGenerator<any> Q,
+            RealPos<any> delta,
+            Simplex<any> pi,
+            Probability<any> rho,
+            String<any> condition {valid options: "time"|"survival"},
+            RealPos<any> nTimeSlices,
+            String<any> simulateCondition {valid options: "startTime"|"numTips"|"tipStates"|"tree"},
+            Natural<any> minNumLineages,
+            Natural<any> maxNumLineages,
+            Natural<any> exactNumLineages,
+            RealPos<any> maxTime,
+            Bool<any> pruneExtinctLineages)
+   Error:	Problem processing line 165 in file "cid3state.Rev"
+> 

@@ -23,3 +23,55 @@ new.code[cv]=4#
 new.code[dv]=5
 new.code<-cbind(matched$phy$tip.label,new.code)
 write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestsixstate.tsv",sep="\t", row.names=FALSE)
+passerine.tree<-read.tree(file="~/Dropbox/nestdivmodel/rawdata/passerine_tree_for_nest_musse_binary.tre")#3243 tips and 3194 internal nodes
+library("ape")#
+library("phytools")#
+library("treeplyr")#
+passerine.tree<-read.tree(file="~/Dropbox/nestdivmodel/rawdata/passerine_tree_for_nest_musse_binary.tre")
+passerine.tree
+plotTree(passerine.tree,type="fan", lwd=0.1)
+plotTree(passerine.tree,type="fan", lwd=0.1,cex=0.3)
+plotTree(passerine.tree,type="fan", lwd=0.1, cex=0.03)
+?plotTree
+plotTree(passerine.tree,type="fan", lwd=0.1, fsize=0.3)
+plotTree(passerine.tree,type="fan", lwd=0.1, fsize=0.03)
+passerine.data<-read.csv("~/Dropbox/nestdivmodel/rawdata/nest_states.csv",header=TRUE,stringsAsFactors=FALSE)
+which(passerine.data[,2]=="brood parasite")
+brood<-which(passerine.data[,2]=="brood parasite")#18
+passerine.data2<-passerine.data[-brood,]
+matched<-make.treedata(passerine.tree,passerine.data2) #3225
+matched
+#Finding how many of each#
+dome<-which(matched$dat=="dome") #722#
+cup<-which(matched$dat=="cup") #1943#
+cavity<-which(matched$dat=="cavity")#458#
+dc<-which(matched$dat=="cup or dome") #29#
+cv<- which(matched$dat=="cavity or cup") #60#
+dv<-which(matched$dat=="cavity or dome") #13
+length(dome)
+length(cup)
+length(cavity)
+length(dc)
+length(cv)
+length(Cd)
+length(dv)
+#Creating the three state dataset for Rev (tsv file)#
+new.code<-rep(0,dim(matched$dat)[1])#
+new.code[dome]="0"#
+new.code[cup]="1"#
+new.code[cavity]="2"#
+new.code[dc]="(0 1)"#
+new.code[cv]="(1 2)"#
+new.code[dv]="(0 2)"
+new.code<-cbind(matched$phy$tip.label,new.code)
+write.nexus(matched$phy,file="~/Dropbox/nestdivmodel/revcode/basicdata/nesttree.nex")
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestthreestate.tsv",sep="\t", row.names=FALSE)
+new.code<-rep(0,dim(matched$dat)[1])#
+new.code[dome]=0#
+new.code[cup]=1#
+new.code[cavity]=2#
+new.code[dc]=3#
+new.code[cv]=4#
+new.code[dv]=5
+new.code<-cbind(matched$phy$tip.label,new.code)
+write.table(new.code,file="~/Dropbox/nestdivmodel/revcode/basicdata/nestsixstate.tsv",sep="\t", row.names=FALSE)
