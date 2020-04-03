@@ -2,7 +2,7 @@
 #SBATCH --job-name=musse6
 #SBATCH --time=00-71:58:00
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=500mb
+#SBATCH --mem=2G
 #SBATCH --partition=shared
 #SBATCH --ntasks=1
 #SBATCH --error=musse6error

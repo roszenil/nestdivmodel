@@ -1,0 +1,191 @@
+
+RevBayes version (1.0.11)
+Build from  () on Fri May 31 08:53:14 UTC 2019
+
+Visit the website www.RevBayes.com for more information about RevBayes.
+
+RevBayes is free software released under the GPL license, version 3. Type 'license()' for details.
+
+To quit RevBayes type 'quit()' or 'q()'.
+
+
+> source("cid6state.Rev")
+   Processing file "cid6state.Rev"
+   Attempting to read the contents of file "nesttree.nex"
+   Successfully read file
+   Error:	No overloaded function 'v' matches for arguments ( RealPos, RealPos, RealPos, RealPos, RealPos, RealPos, RealPos, RealPos[] )
+   Potentially matching functions are:
+   v (Integer<any> ,
+      Integer ...)
+   v (Integer[]<any> ,
+      Integer[] ...)
+   v (Integer[][]<any> ,
+      Integer[][] ...)
+   v (Integer[][][]<any> ,
+      Integer[][][] ...)
+   v (Natural<any> ,
+      Natural ...)
+   v (Natural[]<any> ,
+      Natural[] ...)
+   v (Natural[][]<any> ,
+      Natural[][] ...)
+   v (Natural[][][]<any> ,
+      Natural[][][] ...)
+   v (Probability<any> ,
+      Probability ...)
+   v (Probability[]<any> ,
+      Probability[] ...)
+   v (Probability[][]<any> ,
+      Probability[][] ...)
+   v (Probability[][][]<any> ,
+      Probability[][][] ...)
+   v (Real<any> ,
+      Real ...)
+   v (Real[]<any> ,
+      Real[] ...)
+   v (Real[][]<any> ,
+      Real[][] ...)
+   v (Real[][][]<any> ,
+      Real[][][] ...)
+   v (RealPos<any> ,
+      RealPos ...)
+   v (RealPos[]<any> ,
+      RealPos[] ...)
+   v (RealPos[][]<any> ,
+      RealPos[][] ...)
+   v (RealPos[][][]<any> ,
+      RealPos[][][] ...)
+   v (Bool<any> ,
+      Bool ...)
+   v (Bool[]<any> ,
+      Bool[] ...)
+   v (Bool[][]<any> ,
+      Bool[][] ...)
+   v (Bool[][][]<any> ,
+      Bool[][][] ...)
+   v (String<any> ,
+      String ...)
+   v (String[]<any> ,
+      String[] ...)
+   v (String[][]<any> ,
+      String[][] ...)
+   v (String[][][]<any> ,
+      String[][][] ...)
+   v (Simplex<any> ,
+      Simplex ...)
+   v (Simplex[]<any> ,
+      Simplex[] ...)
+   v (Simplex[][]<any> ,
+      Simplex[][] ...)
+   v (Simplex[][][]<any> ,
+      Simplex[][][] ...)
+   v (Taxon<any> ,
+      Taxon ...)
+   v (Taxon[]<any> ,
+      Taxon[] ...)
+   v (Taxon[][]<any> ,
+      Taxon[][] ...)
+   v (Taxon[][][]<any> ,
+      Taxon[][][] ...)
+   v (RateGenerator<any> ,
+      RateGenerator ...)
+   v (RateGenerator[]<any> ,
+      RateGenerator[] ...)
+   v (RateGenerator[][]<any> ,
+      RateGenerator[][] ...)
+   v (CladogeneticProbabilityMatrix<any> ,
+      CladogeneticProbabilityMatrix ...)
+   v (CladogeneticProbabilityMatrix[]<any> ,
+      CladogeneticProbabilityMatrix[] ...)
+   v (CladogeneticProbabilityMatrix[][]<any> ,
+      CladogeneticProbabilityMatrix[][] ...)
+   v (CladogeneticSpeciationRateMatrix<any> ,
+      CladogeneticSpeciationRateMatrix ...)
+   v (CladogeneticSpeciationRateMatrix[]<any> ,
+      CladogeneticSpeciationRateMatrix[] ...)
+   v (CladogeneticSpeciationRateMatrix[][]<any> ,
+      CladogeneticSpeciationRateMatrix[][] ...)
+   v (DistanceMatrix<any> ,
+      DistanceMatrix ...)
+   v (DistanceMatrix[]<any> ,
+      DistanceMatrix[] ...)
+   v (DistanceMatrix[][]<any> ,
+      DistanceMatrix[][] ...)
+   v (MatrixReal<any> ,
+      MatrixReal ...)
+   v (MatrixReal[]<any> ,
+      MatrixReal[] ...)
+   v (MatrixReal[][]<any> ,
+      MatrixReal[][] ...)
+   v (MatrixRealPos<any> ,
+      MatrixRealPos ...)
+   v (MatrixRealPos[]<any> ,
+      MatrixRealPos[] ...)
+   v (MatrixRealPos[][]<any> ,
+      MatrixRealPos[][] ...)
+   v (MatrixRealSymmetric<any> ,
+      MatrixRealSymmetric ...)
+   v (MatrixRealSymmetric[]<any> ,
+      MatrixRealSymmetric[] ...)
+   v (MatrixRealSymmetric[][]<any> ,
+      MatrixRealSymmetric[][] ...)
+   v (AbstractHomologousDiscreteCharacterData<any> ,
+      AbstractHomologousDiscreteCharacterData ...)
+   v (AbstractHomologousDiscreteCharacterData[]<any> ,
+      AbstractHomologousDiscreteCharacterData[] ...)
+   v (AbstractHomologousDiscreteCharacterData[][]<any> ,
+      AbstractHomologousDiscreteCharacterData[][] ...)
+   v (ContinuousCharacterData<any> ,
+      ContinuousCharacterData ...)
+   v (ContinuousCharacterData[]<any> ,
+      ContinuousCharacterData[] ...)
+   v (ContinuousCharacterData[][]<any> ,
+      ContinuousCharacterData[][] ...)
+   v (CharacterHistoryRateModifier<any> ,
+      CharacterHistoryRateModifier ...)
+   v (CharacterHistoryRateModifier[]<any> ,
+      CharacterHistoryRateModifier[] ...)
+   v (CharacterHistoryRateModifier[][]<any> ,
+      CharacterHistoryRateModifier[][] ...)
+   v (TimeTree<any> ,
+      TimeTree ...)
+   v (TimeTree[]<any> ,
+      TimeTree[] ...)
+   v (TimeTree[][]<any> ,
+      TimeTree[][] ...)
+   v (BranchLengthTree<any> ,
+      BranchLengthTree ...)
+   v (BranchLengthTree[]<any> ,
+      BranchLengthTree[] ...)
+   v (BranchLengthTree[][]<any> ,
+      BranchLengthTree[][] ...)
+   v (Tree<any> ,
+      Tree ...)
+   v (Tree[]<any> ,
+      Tree[] ...)
+   v (Tree[][]<any> ,
+      Tree[][] ...)
+   v (Clade<any> ,
+      Clade ...)
+   v (Clade[]<any> ,
+      Clade[] ...)
+   v (Clade[][]<any> ,
+      Clade[][] ...)
+   v (Distribution<any> ,
+      Distribution ...)
+   v (Model<any> ,
+      Model ...)
+   v (Distribution__TimeTree<any> ,
+      Distribution__TimeTree ...)
+   v (AncestralStateTrace<any> ,
+      AncestralStateTrace ...)
+   v (Monitor<any> ,
+      Monitor ...)
+   v (Move<any> ,
+      Move ...)
+   v (StoppingRule<any> ,
+      StoppingRule ...)
+   v (DemographicFunction<any> ,
+      DemographicFunction ...)
+   Error:	Problem processing line 90 in file "cid6state.Rev"
+> 

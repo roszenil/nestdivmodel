@@ -17,7 +17,9 @@ NUM_RATES = NUM_STATES * NUM_HIDDEN
 # Read in the data
 #########################
 observed_phylogeny <- readTrees("/mnt/scratch/nfs_fs02/roszenil/nido/nesttree.nex")[1]
+# observed_phylogeny <- readTrees("basicdata/nesttree.nex")[1]
 data <- readCharacterDataDelimited("/mnt/scratch/nfs_fs02/roszenil/nido/nestsixstate.tsv",stateLabels=6,type="NaturalNumbers",delimiter="\t",headers=FALSE)
+# data <- readCharacterDataDelimited("basicdata/nestsixstate.tsv",stateLabels=6,type="NaturalNumbers",delimiter="\t",headers=FALSE)
 # Get some useful variables from the data. We need these later on
 taxa <- observed_phylogeny.taxa()
 data_exp <- data.expandCharacters(2)
@@ -51,7 +53,6 @@ moves[++mvi] = mvSlide(extinction_alpha,delta=0.20,tune=true,weight=3.0)
 
 
 
-
 ### Create an exponential distributed variable for the diversification rate
 speciation_beta ~ dnExp(1.0)
 moves[++mvi] = mvSlide(speciation_beta,delta=0.20,tune=true,weight=2.0)
@@ -81,13 +82,13 @@ extinction[5] := 0
 speciation[6] := 0
 extinction[6] := 0
 
-speciation[7] := speciation[1] * exp( speciation_beta)
+speciation[7] := exp(speciation_alpha+speciation_beta)
 extinction[7] := exp( extinction_alpha + extinction_beta)
 
-speciation[8] := speciation * exp( speciation_beta)
+speciation[8] := exp(speciation_alpha + speciation_beta)
 extinction[8] := exp( extinction_alpha + extinction_beta)
 
-speciation[9] := speciation * exp( speciation_beta)
+speciation[9] := exp(speciation_alpha + speciation_beta)
 extinction[9] := exp( extinction_alpha + extinction_beta)
 
 speciation[10] := 0
