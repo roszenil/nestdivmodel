@@ -16,7 +16,9 @@ NUM_RATES= NUM_STATES* NUM_HIDDEN
 # Read in the data
 #########################
 observed_phylogeny <- readTrees("/mnt/scratch/nfs_fs02/roszenil/nido/nesttree.nex")[1]
+#observed_phylogeny <- readTrees("basicdata/nesttree.nex")[1]
 data <- readCharacterDataDelimited("/mnt/scratch/nfs_fs02/roszenil/nido/nestthreestate.tsv",stateLabels=3,type="NaturalNumbers",delimiter="\t",headers=FALSE)
+#data <- readCharacterDataDelimited("basicdata/nestthreestate.tsv",stateLabels=3,type="NaturalNumbers",delimiter="\t",headers=FALSE)
 # Get some useful variables from the data. We need these later on
 taxa <- observed_phylogeny.taxa()
 data_exp <- data.expandCharacters(2)
@@ -170,7 +172,7 @@ rho               = rho)
 
 ### clamp the model with the "observed" tree
 timetree.clamp( observed_phylogeny )
-timetree.clampCharData( data )
+timetree.clampCharData( data_exp )
 
 
 
@@ -185,7 +187,7 @@ mymodel = model(rate_matrix)
 ### set up the monitors that will output parameter values to file and screen
 
 monitors[++mni] = mnModel(filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/MuHiSSE_threestate.log", printgen=1)
-monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=1000, withTips=true, withStartStates=false, filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/anc_states_MuHiSSE_threestate.log")
+#monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=1000, withTips=true, withStartStates=false, filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/anc_states_MuHiSSE_threestate.log")
 monitors[++mni] = mnScreen(printgen=10, speciation,extinction)
 
 
@@ -197,7 +199,7 @@ monitors[++mni] = mnScreen(printgen=10, speciation,extinction)
 mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
 
 ### pre-burnin to tune the proposals
-mymcmc.burnin(generations=5000,tuningInterval=100)
+#mymcmc.burnin(generations=5000,tuningInterval=100)
 
 ### run the MCMC
 mymcmc.run(generations=150000)

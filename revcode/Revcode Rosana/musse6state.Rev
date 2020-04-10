@@ -15,7 +15,9 @@ NUM_STATES=6
 # Read in the data
 #########################
 observed_phylogeny <- readTrees("/mnt/scratch/nfs_fs02/roszenil/nido/nesttree.nex")[1]
+#observed_phylogeny <- readTrees("basicdata/nesttree.nex")[1]
 data <- readCharacterDataDelimited("/mnt/scratch/nfs_fs02/roszenil/nido/nestsixstate.tsv",stateLabels=6,type="NaturalNumbers",delimiter="\t",headers=FALSE)
+#data <- readCharacterDataDelimited("basicdata/nestsixstate.tsv",stateLabels=6,type="NaturalNumbers",delimiter="\t",headers=FALSE)
 # Get some useful variables from the data. We need these later on
 taxa <- observed_phylogeny.taxa()
 
@@ -176,8 +178,9 @@ mymodel = model(rate_matrix)
 
 ### set up the monitors that will output parameter values to file and screen
 monitors[++mni] = mnModel(filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/MuSSE_sixstate.log", printgen=1)
+#monitors[++mni] = mnModel(filename="output/MuSSE_sixstate.log", printgen=1)
 #monitors[++mni] = mnStochasticCharacterMap(cdbdp=timetree, filename="/home/eeg/shared/twostatesse/nest/output/MuSSE_sixstatemaps.log", printgen=1000)
-monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=100, withTips=true, withStartStates=false, filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/anc_states_MuSSE_sixstate.log")
+#monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=100, withTips=true, withStartStates=false, filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/anc_states_MuSSE_sixstate.log")
 monitors[++mni] = mnScreen(printgen=10, q_12, speciation, extinction)
 monitors[++mni] = mnScreen(printgen=10, q_21)
 monitors[++mni] = mnScreen(printgen=10, q_23)
@@ -204,7 +207,7 @@ monitors[++mni] = mnScreen(printgen=10, q_53)
 mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
 
 ### pre-burnin to tune the proposals
-mymcmc.burnin(generations=5000,tuningInterval=100)
+#mymcmc.burnin(generations=5000,tuningInterval=100)
 
 ### run the MCMC
 mymcmc.run(generations=150000)

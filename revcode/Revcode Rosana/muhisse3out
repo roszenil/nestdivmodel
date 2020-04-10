@@ -1,0 +1,24 @@
+
+RevBayes version (1.0.11)
+Build from  () on Fri May 31 08:53:14 UTC 2019
+
+Visit the website www.RevBayes.com for more information about RevBayes.
+
+RevBayes is free software released under the GPL license, version 3. Type 'license()' for details.
+
+To quit RevBayes type 'quit()' or 'q()'.
+
+
+> source("muhisse3state.Rev")
+   Processing file "muhisse3state.Rev"
+   Attempting to read the contents of file "nesttree.nex"
+   Successfully read file
+
+   Running MCMC simulation
+   This simulation runs 1 independent replicate.
+   The simulator uses 20 different moves in a random move schedule with 52 moves per iteration
+
+Iter        |      Posterior   |     Likelihood   |          Prior   |   extinction..      |extinction..      |extinction..      |extinction..      |extinction..      |extinction..   |   speciation..      |speciation..      |speciation..      |speciation..      |speciation..      |speciation..   |    elapsed   |        ETA   |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+0           |       -17599.2   |       -17594.4   |       -4.80679   |      0.0776576      |   0.0462484      |   0.0650972      |    0.181241      |    0.107937      |    0.151927   |      0.0104712      |   0.0275074      |    0.110599      |   0.0193328      |   0.0507863      |    0.204196   |   00:00:00   |   --:--:--   |
+10          |       -11200.4   |       -11195.1   |       -5.27075   |      0.0246552      |   0.0154012      |     0.05697      |   0.0339462      |   0.0212049      |   0.0784385   |      0.0172272      |   0.0657556      |    0.129686      |    0.042986      |    0.164076      |    0.323599   |   00:06:24   |   --:--:--   |
