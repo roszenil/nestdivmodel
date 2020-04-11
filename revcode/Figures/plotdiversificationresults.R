@@ -1,9 +1,11 @@
 library("ggplot2")
 library("wesanderson")
 library("viridis")
+library("inlmisc")
 
 ### Colors
 cols<-c(wes_palette("Zissou1"),wes_palette("Darjeeling1"),wes_palette("GrandBudapest2"))
+cols2<-c(inlmisc::GetTolColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))
 
 
 mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgoldenrod1","blue3","firebrick3")
@@ -166,7 +168,7 @@ sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,ou
 
 sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))
 
-mypalette2<-viridis(18)
+mypalette2<-as.character(cols2)#viridis(18)
 trait.rates1<-data.frame(dens=c(output.sse$q_12,output.sse$q_13,output.sse$q_14,output.sse$q_16),Type=rep(c("q_12","q_13","q_14","q_16"),each=length(output.sse$q_12)))
 
 trait.rates2<-data.frame(dens=c(output.sse$q_21,output.sse$q_31,output.sse$q_41,output.sse$q_61),Type=rep(c("q_21","q_31","q_41","q_61"),each=length(output.sse$q_21)))
@@ -217,29 +219,29 @@ panel.background = element_blank(), axis.line = element_line(colour = "black"))+
 
 multiplot(p1,p3.1,p2,p4, cols=2)
 
-p5<-ggplot(trait.rates1, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[1:4])+xlim(0,0.01)
+p5<-ggplot(trait.rates1, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[1:4])+xlim(0,0.01)
 
-p6<-ggplot(trait.rates2, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(5,9,13,17)])+xlim(0,0.05)
+p6<-ggplot(trait.rates2, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(5,9,13,17)])+xlim(0,0.02)
 
-p7<-ggplot(trait.rates3, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[5:8])
+p7<-ggplot(trait.rates3, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[5:8])
 
-p8<-ggplot(trait.rates4, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(1,10,14,15)])+xlim(0,0.3)
+p8<-ggplot(trait.rates4, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(1,10,14,15)])+xlim(0,0.05)
 
-p9<-ggplot(trait.rates5, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[9:12])
+p9<-ggplot(trait.rates5, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[9:12])
 
-p10<-ggplot(trait.rates6, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(2,6,11,12)])+xlim (0,0.1)
+p10<-ggplot(trait.rates6, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(2,6,11,12)])+xlim (0,0.025)
 
-p11<-ggplot(trait.rates7, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[13:14])+xlim(0,0.3)
+p11<-ggplot(trait.rates7, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[13:14])+xlim(0,0.3)
 
-p12<-ggplot(trait.rates8, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(3,7)])=xlim(0,0.01)
+p12<-ggplot(trait.rates8, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(3,7)])+xlim(0,0.01)
 
-p13<-ggplot(trait.rates9, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[15:16])
+p13<-ggplot(trait.rates9, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[15:16])
 
-p14<-ggplot(trait.rates10, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(8,11)])
+p14<-ggplot(trait.rates10, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(8,11)])
 
-p15<-ggplot(trait.rates11, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[17:18])+xlim(0,0.6)
+p15<-ggplot(trait.rates11, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[17:18])+xlim(0,0.6)
 
-p16<-ggplot(trait.rates12, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(4,12)])
+p16<-ggplot(trait.rates12, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(4,12)])
 
 multiplot(p5,p7,p9,p6,p8,p10,cols=2)
 multiplot(p11,p13,p15,p12,p14,p16, cols=2)
