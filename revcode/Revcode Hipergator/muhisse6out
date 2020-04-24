@@ -1,0 +1,14 @@
+
+RevBayes version (1.0.12)
+Build from  () on Sat Oct 26 02:17:13 UTC 2019
+
+Visit the website www.RevBayes.com for more information about RevBayes.
+
+RevBayes is free software released under the GPL license, version 3. Type 'license()' for details.
+
+To quit RevBayes type 'quit()' or 'q()'.
+
+
+> source("/ufrc/burleigh/rzenil/nido/muhisse6state-2.Rev")
+   Error:	Could not open file "/ufrc/burleigh/rzenil/nido/muhisse6state-2.Rev"
+> 

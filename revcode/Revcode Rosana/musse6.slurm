@@ -1,9 +1,10 @@
 #!/bin/bash
 #SBATCH --job-name=musse6
-#SBATCH --time=00-71:58:00
+#SBATCH --time=10-00:00:00
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=2G
-#SBATCH --partition=shared
+#SBATCH --account=zenilab
+#SBATCH --partition=zenilab
 #SBATCH --ntasks=1
 #SBATCH --error=musse6error
 #SBATCH --output=musse6out
