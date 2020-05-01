@@ -1,6 +1,7 @@
 ####################################################################################################
 #
-# MuSSE for Three State Nest Evolution Models, adding fossil info in prior for extinction particular for each type. Minimum of 0.8 speciation
+# MuSSE for Three State Nest Evolution Models, adding fossil info in prior for extinction particular for each type. Minimum of 0.8 speciation with
+# exponential distribution for extra
 #
 # authors: Rosana Zenil-Ferguson
 # Last updated: 04/22/2020
@@ -46,7 +47,7 @@ moves[++mvi] = mvSlide(log_speciation[i],delta=0.20,tune=true,weight=3.0)
 
 ### Create a lognormal distributed variable for the turnover rate
 extra[i] ~ dnExp(lambda = rate_exp)
-moves[++mvi] = mvSlide(extra[i],delta=0.02,tune=true,weight=3.0)
+moves[++mvi] = mvSlide(extra[i],delta=0.2,tune=true,weight=1.0)
 extinction[i] := 0.8*speciation[i] + extra[i]
 }
 
@@ -148,7 +149,7 @@ mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
 #mymcmc.burnin(generations=5000,tuningInterval=100)
 
 ### run the MCMC
-mymcmc.run(generations=30000)
+mymcmc.run(generations=100000)
 
 ##############################
 # Summarize ancestral states #

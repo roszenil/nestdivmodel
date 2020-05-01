@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --time=04-00:00:00
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=2G
+#SBATCH --mem=4G
 #SBATCH --account=burleigh
 #SBATCH --qos=burleigh-b
 #SBATCH --error=musse6error
@@ -13,6 +13,8 @@
 #SBATCH --mail-user=roszenil@hawaii.edu
 
 module load gcc
-module load revbayes
+module load intel/2018.1.163  
+module load openmpi/3.0.0
+module load revbayes/1.0.7
 
 rb /ufrc/burleigh/rzenil/nido/musse6state.Rev

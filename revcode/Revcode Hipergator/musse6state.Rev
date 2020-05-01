@@ -3,20 +3,24 @@
 # MuSSE for Six State Nest Evolution Models
 #
 # authors: Rosana Zenil-Ferguson
-# Last updated: 04/21/2020
+# Last updated: 04/26/2020
 ####################################################################################################
 
 setOption("useScaling", "true")
+
 #IMPORTANT: Change base directory depending on location of the run
-#Hipergator is /ufrc/burleigh/rzenil/nido  make sure to change (Both input and output files require it)
+#mine here is   make sure to change (Both input and output files require it)
 
 NUM_STATES=6
 #########################
 # Read in the data
 #########################
 observed_phylogeny <- readTrees("/ufrc/burleigh/rzenil/nido/nesttree.nex")[1]
-data <-readCharacterDataDelimited("/ufrc/burleigh/rzenil/nido/nestsixstate.tsv",stateLabels=6,type="NaturalNumbers",delimiter="\t",headers=FALSE)
+
+data <- readCharacterDataDelimited("/ufrc/burleigh/rzenil/nido/nestsixstate.tsv",stateLabels=6,type="NaturalNumbers",delimiter="\t",headers=FALSE)
 # Get some useful variables from the data. We need these later on
+data
+
 taxa <- observed_phylogeny.taxa()
 
 # set my move index
@@ -24,15 +28,16 @@ mvi = 0
 mni = 0
 
 H = 0.587405
-
+H
 ####################
 # Create the rates #
 ####################
 
 ### Specify a prior on the diversification and turnover rate
-### 1= Dome 2=Cup 3=caVity and 4=DC 5=CV 6=DV
+### 0= Dome 1=Cup 2=caVity and 3=DC 4=CV 5=DV
 ### Create the constant prior parameters of the diversification rates
 ## Number of surviving lineages is 3225
+
 rate_mean <- ln( ln(3225/2.0) / observed_phylogeny.rootAge() )
 rate_sd <- 2*H
 
@@ -56,6 +61,8 @@ speciation[i] := 0
 extinction[i] := 0
 }
 
+speciation
+extinction
 
 #########################################################
 # Set up the transition rate matrix for observed states #
@@ -137,18 +144,24 @@ q[5][3] := q_53
 
 # generate the actual matrix
 rate_matrix := fnFreeK(q, rescaled=false, matrixExponentialMethod="scalingAndSquaring")
+rate_matrix
 
 ### Create a constant variable with the prior probabilities of each rate category at the root.
 rate_category_prior ~ dnDirichlet( rep(1,NUM_STATES) )
 moves[++mvi] = mvDirichletSimplex(rate_category_prior,tune=true,weight=2)
 
+rate_category_prior
+
 ### Create the fix parameter for the age of the root set to the observed age
 root <- observed_phylogeny.rootAge()
+
+root
 
 ### rho is the probability of sampling species at the present
 ### I did not add any sampling of species but it is posible by setting this rho parameter
 ### 6321 possible passerines
 rho <- observed_phylogeny.ntips()/6321
+rho
 
 #### construct a variable for the tree drawn from a birth death process
 timetree ~ dnCDBDP( rootAge = root,
@@ -164,38 +177,21 @@ condition         = "time")
 timetree.clamp( observed_phylogeny )
 timetree.clampCharData( data )
 
-
-
 #############
 # The Model #
 #############
 
-
 ### workspace model wrapper ###
 mymodel = model(rate_matrix)
+mymodel
 
 ### set up the monitors that will output parameter values to file and screen
 monitors[++mni] = mnModel(filename="/ufrc/burleigh/rzenil/nido/output/MuSSE_sixstate.log", printgen=1)
-#monitors[++mni] = mnStochasticCharacterMap(cdbdp=timetree, filename="/ufrc/burleigh/rzenil/nido/output/MuSSE_sixstatemaps.log", printgen=1000)
-#monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=100, withTips=true, withStartStates=false, filename="/ufrc/burleigh/rzenil/nido/output/anc_states_MuSSE_sixstate.log")
-monitors[++mni] = mnScreen(printgen=10, q_12, speciation, extinction)
-monitors[++mni] = mnScreen(printgen=10, q_21)
-monitors[++mni] = mnScreen(printgen=10, q_23)
-monitors[++mni] = mnScreen(printgen=10, q_32)
-monitors[++mni] = mnScreen(printgen=10, q_13)
-monitors[++mni] = mnScreen(printgen=10, q_31)
-monitors[++mni] = mnScreen(printgen=10, q_14)
-monitors[++mni] = mnScreen(printgen=10, q_41)
-monitors[++mni] = mnScreen(printgen=10, q_25)
-monitors[++mni] = mnScreen(printgen=10, q_52)
-monitors[++mni] = mnScreen(printgen=10, q_36)
-monitors[++mni] = mnScreen(printgen=10, q_63)
-monitors[++mni] = mnScreen(printgen=10, q_16)
-monitors[++mni] = mnScreen(printgen=10, q_61)
-monitors[++mni] = mnScreen(printgen=10, q_24)
-monitors[++mni] = mnScreen(printgen=10, q_42)
-monitors[++mni] = mnScreen(printgen=10, q_35)
-monitors[++mni] = mnScreen(printgen=10, q_53)
+#monitors[++mni] = mnModel(filename="output/MuSSE_sixstate.log", printgen=1)
+#monitors[++mni] = mnStochasticCharacterMap(cdbdp=timetree, filename="/home/eeg/shared/twostatesse/nest/output/MuSSE_sixstatemaps.log", printgen=1000)
+#monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=100, withTips=true, withStartStates=false, filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/anc_states_MuSSE_sixstate.log")
+monitors[++mni] = mnScreen(printgen=10, rate_matrix, speciation, extinction)
+
 ################
 # The Analysis #
 ################
@@ -207,8 +203,8 @@ mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
 #mymcmc.burnin(generations=5000,tuningInterval=100)
 
 ### run the MCMC
-mymcmc.run(generations=15000)
-
+mymcmc.run(generations=30000)
+timetree.clamp(observed_phylogeny)
 ##############################
 # Summarize ancestral states #
 ##############################

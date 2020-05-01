@@ -1,0 +1,72 @@
+
+
+#### construct a variable for the tree drawn from a birth death process
+timetree ~ dnCDBDP( rootAge = root,
+speciationRates   = speciation,
+extinctionRates   = extinction,
+Q                 = rate_matrix,
+pi                = rate_category_prior,
+rho               = rho,
+delta             = 1.0,
+condition         = "time")
+
+### clamp the model with the "observed" tree
+timetree.clamp( observed_phylogeny )
+timetree.clampCharData( data )
+
+timetree
+
+#############
+# The Model #
+#############
+
+
+### workspace model wrapper ###
+mymodel = model(rate_matrix)
+mymodel
+
+### set up the monitors that will output parameter values to file and screen
+monitors[++mni] = mnModel(filename="/ufrc/burleigh/rzenil/nido/output/MuSSE_sixstate.log", printgen=1)
+#monitors[++mni] = mnModel(filename="output/MuSSE_sixstate.log", printgen=1)
+#monitors[++mni] = mnStochasticCharacterMap(cdbdp=timetree, filename="/home/eeg/shared/twostatesse/nest/output/MuSSE_sixstatemaps.log", printgen=1000)
+#monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=100, withTips=true, withStartStates=false, filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/anc_states_MuSSE_sixstate.log")
+monitors[++mni] = mnScreen(printgen=10, q_12, speciation, extinction)
+#monitors[++mni] = mnScreen(printgen=10, q_21)
+#monitors[++mni] = mnScreen(printgen=10, q_23)
+#monitors[++mni] = mnScreen(printgen=10, q_32)
+#monitors[++mni] = mnScreen(printgen=10, q_13)
+#monitors[++mni] = mnScreen(printgen=10, q_31)
+#monitors[++mni] = mnScreen(printgen=10, q_14)
+#monitors[++mni] = mnScreen(printgen=10, q_41)
+#monitors[++mni] = mnScreen(printgen=10, q_25)
+#monitors[++mni] = mnScreen(printgen=10, q_52)
+#monitors[++mni] = mnScreen(printgen=10, q_36)
+#monitors[++mni] = mnScreen(printgen=10, q_63)
+#monitors[++mni] = mnScreen(printgen=10, q_16)
+#monitors[++mni] = mnScreen(printgen=10, q_61)
+#monitors[++mni] = mnScreen(printgen=10, q_24)
+#monitors[++mni] = mnScreen(printgen=10, q_42)
+#monitors[++mni] = mnScreen(printgen=10, q_35)
+#monitors[++mni] = mnScreen(printgen=10, q_53)
+################
+# The Analysis #
+################
+
+### workspace mcmc
+mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
+
+### pre-burnin to tune the proposals
+#mymcmc.burnin(generations=5000,tuningInterval=100)
+
+### run the MCMC
+mymcmc.run(generations=30000)
+timetree.clamp(observed_phylogeny)
+##############################
+# Summarize ancestral states #
+##############################
+## We will run this later locally
+
+#anc_states = readAncestralStateTrace("/home/eeg/shared/twostatesse/nest/output/anc_states_MuSSE_sixstate.log")
+#anc_tree = ancestralStateTree(tree=observed_phylogeny, ancestral_state_trace_vector=anc_states, include_start_states=false, file="/home/eeg/shared/twostatesse/nest/output/anc_states_summaryMuSSEsixstate.tree", burnin=5000, summary_statistic="MAP", site=0)
+
+q()

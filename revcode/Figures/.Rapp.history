@@ -1,3 +1,32 @@
+boxplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6])
+extra.credit<-rep(0, length(complete$Pink.Card))#
+extra.credit[pink.card]<-1+complete$Signatures[pink.card]+complete$Primer.ExCr[pink.card]#
+extra.credit[nopink.card]<-complete$Primer.ExCr[nopink.card]
+extra.credit
+is.na(complete$Primer.ExCr[pink.card]==TRUE)
+aux1<-which(is.na(complete$Primer.ExCr[pink.card])==TRUE
+)
+aux1
+library(devtools)
+install_github("revbayes/RevGadgets")
+sample(1:44,44,replace=FALSE)
+biocLite("ggtree")
+source("https://bioconductor.org/biocLite.R")
+?BiocUpgrade
+biocLite("BiocUpgrade")
+BiocManager::install("ggtree")
+library("BiocManager")
+biocLite("ggtree")
+read.table("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13511 TDR.xls", header=TRUE)
+scantron.retake2<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13511 TDR.csv", header=TRUE)
+head(scantron.retake2)
+scantron.retake2<-scantron.retake2[,c(1,10:82)]
+head(scantron.retake2)
+scantron.retake2<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13511 TDR.csv", header=TRUE)
+scantron.retake2<-scantron.retake2[,c(1,10:81)]
+head(scantron.retake2)
+scantron.retake2[1,]==scantron.retake2[2,]
+sum(scantron.retake2[1,]==scantron.retake2[2,])
 scantron.retake[1,2:51]
 scantron.retake2[1,2:51]
 sum(scantron.retake2[1,2;51]==scantron.retake2[2,2;51])
@@ -425,10 +454,16 @@ ggplot(quiz.dataset, aes(x = date, y =average.quiz)) + #
   geom_point(aes(color = viridis(3), size = youtube.views), alpha = 0.5) +scale_size(range=c(30,50))
 ggplot(quiz.dataset, aes(x = date, y =average.quiz)) + #
   geom_point(aes(color = viridis(3), size = youtube.views), alpha = 0.5) +scale_size(range=c(10,20))
-install.packages("inlmisc")
-library("inlmisc")
+library("ggplot2")#
+library("wesanderson")#
+library("viridis")#
+library("inlmisc")#
+#
+### Colors#
 cols<-c(wes_palette("Zissou1"),wes_palette("Darjeeling1"),wes_palette("GrandBudapest2"))#
-cols2<-c(inlmisc::GetTolColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))#
+cols2<-c(inlmisc::GetTolColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))
+cols2<-c(inlmisc::GetColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))
+cols2<-c(inlmisc::GetColors(9, scheme = "muted"),inlmisc::GetColors(9, scheme = "light"))
 mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgoldenrod1","blue3","firebrick3")#
 #cols2<- c("#7b3294","#c2a5cf","#a6dba0","#008837","#ffffbf")#
 #cols3<-c("#ece2f0", "#67a9cf","#e31a1c","#fd8d3c","#02818a","#014636")#
@@ -436,132 +471,7 @@ mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgold
 #sampling<-seq(1,250000,100)#
 ### Plots for diversification rates Bisse DP with diploidization#
 setwd("~/Dropbox/nestdivmodel/revcode/Figures")
-library("ggplot2")#
-library("wesanderson")#
-library("viridis")
-cols<-c(wes_palette("Zissou1"),wes_palette("Darjeeling1"),wes_palette("GrandBudapest2"))#
-cols2<-c(inlmisc::GetTolColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))#
-mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgoldenrod1","blue3","firebrick3")#
-#cols2<- c("#7b3294","#c2a5cf","#a6dba0","#008837","#ffffbf")#
-#cols3<-c("#ece2f0", "#67a9cf","#e31a1c","#fd8d3c","#02818a","#014636")#
-#cols4<-c(cols[4],"#fdb863","#542788","#b2abd2","#f7f7f7",cols[2])#
-#sampling<-seq(1,250000,100)#
-### Plots for diversification rates Bisse DP with diploidization#
-setwd("~/Dropbox/nestdivmodel/revcode/Figures")#
-source("multiplot.R")
-cols2<-c(inlmisc::GetColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))
-cols2<-c(inlmisc::GetToolColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))
-cols2
-cols2<-c(inlmisc::GetTolColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))
-output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3min.log", header=TRUE)
-sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
-#
-sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))
-head(output.sse)
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv2.log", header=TRUE)#
 output.sse<-output.sse[-c(1:500),]
-sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
-#
-sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
-#
-delta<-data.frame(dens=coutput.sse$extra,Type=rep("delta",each=length(output.sse$extra)))
-delta<-data.frame(dens=output.sse$extra,Type=rep("delta",each=length(output.sse$extra)))
-p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
-#
-p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
-#
-p3.1<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
-#
-p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
-p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
-multiplot(p1,p3.1,p5,p2,p4, cols=2)
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.82)
-p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.82)
-multiplot(p1,p3.1,p5,p2,p4, cols=2)
-p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = "purple")
-multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
-output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3min-2.log", header=TRUE)
-output.sse<-output.sse[-c(1:500),]#
-#
-sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
-#
-sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
-#
-trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
-#
-delta<-data.frame(dens=output.sse$extra,Type=rep("delta",each=length(output.sse$extra)))#
-p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
-#
-p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
-#
-p3.1<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
-#
-p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
-panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
-p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
-#
-p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = "purple")#
-multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
-library("ggplot2")#
-library("wesanderson")#
-library("ggtree")#
-cols<-c(wes_palette("Darjeeling1"),wes_palette("Darjeeling2"))#
-cols2<- c("#7b3294","#c2a5cf","#a6dba0","#008837","#ffffbf")#
-cols3<-c("#ece2f0", "#67a9cf","#e31a1c","#fd8d3c","#02818a","#014636")#
-#sampling<-seq(1,250000,100)#
-### Plots for diversification rates Bisse DP with diploidization#
-source('~/Dropbox/nestdivmodel/revcode/Figures/plot_ancestral_states_2.R')
-p2 = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tree", #
-                          size=0.2, include_start_states=FALSE, #
-                          summary_statistic="MAP",tip_label_size=0.45, #
-                          tip_label_offset=0,#
-                          #tip_label_offset=0.4,#
-                          tip_label_italics=TRUE,#
-                          node_label_size=FALSE,node_label_nudge_x=0.1,#
-                          shoulder_label_size=2,alpha=.3,node_size_range=c(3, 5))
-p2
-p = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tree",summary_statistic="MAP", include_start_states=FALSE, tip_label_size=0.3, tip_label_offset=0.5,node_label_size=0.1,node_label_nudge_x=0.1,shoulder_label_size=2,alpha=.3,node_size_range=c(2, 6))#
-print(p)
-cols<-c(wes_palette("Zissou1"),wes_palette("Darjeeling1"),wes_palette("GrandBudapest2"))#
-cols2<-c(inlmisc::GetTolColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))#
-mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgoldenrod1","blue3","firebrick3")#
-#sampling<-seq(1,250000,100)#
-### Plots for diversification rates Bisse DP with diploidization#
-source('~/Dropbox/nestdivmodel/revcode/Figures/plot_ancestral_states_2.R')#
-p = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tree",summary_statistic="MAP", include_start_states=FALSE, tip_label_size=0.3, tip_label_offset=0.5,node_label_size=0.1,node_label_nudge_x=0.1,shoulder_label_size=2,alpha=.3,node_size_range=c(2, 6),state_colors=c(mypalette[3],mypalette[2], mypalette[1]))#
-print(p)
-p = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tree",summary_statistic="MAP", include_start_states=FALSE, tip_label_size=0.3, tip_label_offset=0.5,node_label_size=0.1,node_label_nudge_x=0.1,shoulder_label_size=2,alpha=.3,node_size_range=c(2, 6),state_colors=c(mypalette[3],mypalette[2], mypalette[1]))#
-print(p)
-p = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tree",summary_statistic="MAP", include_start_states=FALSE, tip_label_size=0.3, tip_label_offset=0.5,node_label_size=0.1,node_label_nudge_x=0.1,shoulder_label_size=2,alpha=.8,node_size_range=c(2, 6),state_colors=c(mypalette[3],mypalette[2], mypalette[1]))#
-print(p)
-p = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tree",summary_statistic="MAP", include_start_states=FALSE, tip_label_size=0.3, tip_label_offset=0.5,node_label_size=0.1,node_label_nudge_x=0.1,shoulder_label_size=2,alpha=.5,node_size_range=c(2, 6),state_colors=c(mypalette[3],mypalette[2], mypalette[1]))#
-print(p)
-p = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tre",summary_statistic="MAP", include_start_states=FALSE, tip_label_size=0.3, tip_label_offset=0.5,node_label_size=0.1,node_label_nudge_x=0.1,shoulder_label_size=2,alpha=.5,node_size_range=c(2, 6),state_colors=c(mypalette[3],mypalette[2], mypalette[1]))#
-print(p)
-p = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tre",summary_statistic="MAP", include_start_states=FALSE, tip_label_size=0.3, tip_label_offset=0.5,node_label_size=0.1,node_label_nudge_x=0.1,shoulder_label_size=2,alpha=.5,node_size_range=c(2, 6),state_colors=c(mypalette[3],mypalette[2], mypalette[1]))#
-print(p)
-p = plot_ancestral_states_2("~/Dropbox/nestdivmodel/revcode/results/anc_states_summaryMuSSEthreestate.tree",summary_statistic="MAP", include_start_states=FALSE, tip_label_size=0.3, tip_label_offset=0.5,node_label_size=0.1,node_label_nudge_x=0.1,shoulder_label_size=2,alpha=.5,node_size_range=c(2, 6),state_colors=c(mypalette[3],mypalette[2], mypalette[1]))#
-print(p)
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv2.log", header=TRUE)
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv2.log", header=TRUE)

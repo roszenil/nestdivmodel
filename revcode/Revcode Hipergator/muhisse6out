@@ -9,6 +9,4 @@ RevBayes is free software released under the GPL license, version 3. Type 'licen
 To quit RevBayes type 'quit()' or 'q()'.
 
 
-> source("/ufrc/burleigh/rzenil/nido/muhisse6state-2.Rev")
-   Error:	Could not open file "/ufrc/burleigh/rzenil/nido/muhisse6state-2.Rev"
-> 
+> source("/ufrc/burleigh/rzenil/nido/muhisse6state.Rev")

@@ -3,10 +3,11 @@
 # MuHiSSE for Six State Nest Evolution Models
 #
 # authors: Rosana Zenil-Ferguson
-# Last updated: 04/21/2020
+# Last updated: 04/26/2020
 ####################################################################################################
 
 setOption("useScaling", "true")
+
 #IMPORTANT: Change base directory depending on location of the run
 #mine here is  /ufrc/burleigh/rzenil/nido make sure to change (Both input and output files require it)
 
@@ -35,7 +36,7 @@ H = 0.587405
 ### Specify a prior on the diversification and turnover rate
 
 ### Create the constant prior parameters of the diversification rates
-## Number of surviving lineages isc3225
+## Number of surviving lineages is 3225
 rate_mean <- ln( ln(3225/2.0) / observed_phylogeny.rootAge() )
 rate_sd <- 2*H
 
@@ -225,10 +226,10 @@ rho               = rho,
 delta             = 1.0)
 
 ### clamp the model with the "observed" tree
+
+
 timetree.clamp( observed_phylogeny )
-timetree.clampCharData( data )
-
-
+timetree.clampCharData( data_exp )
 
 #############
 # The Model #
@@ -240,8 +241,8 @@ mymodel = model(rate_matrix)
 
 ### set up the monitors that will output parameter values to file and screen
 monitors[++mni] = mnModel(filename="/ufrc/burleigh/rzenil/nido/output/MuHiSSE_sixstate.log", printgen=1)
-#monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=100, withTips=true, withStartStates=false, filename="/mnt/scratch/nfs_fs02/roszenil/nido/output/anc_states_MuHiSSE_sixstate.log")
-monitors[++mni] = mnScreen(printgen=10, Q, R, speciation, extinction)
+#monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=100, withTips=true, withStartStates=false, filename="/ufrc/burleigh/rzenil/nido/output/anc_states_MuHiSSE_sixstate.log")
+monitors[++mni] = mnScreen(printgen=10, rate_matrix, R, speciation, extinction)
 ################
 # The Analysis #
 ################
@@ -253,7 +254,7 @@ mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
 #mymcmc.burnin(generations=5000,tuningInterval=100)
 
 ### run the MCMC
-mymcmc.run(generations=15000)
+mymcmc.run(generations=100)
 
 ##############################
 # Summarize ancestral states #
