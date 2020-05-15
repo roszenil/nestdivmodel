@@ -1,206 +1,3 @@
-boxplot(complete$Total.Exam[sig0],complete$Total.Exam[sig1],complete$Total.Exam[sig2],complete$Total.Exam[sig3],complete$Total.Exam[sig4],complete$Total.Exam[sig6])
-extra.credit<-rep(0, length(complete$Pink.Card))#
-extra.credit[pink.card]<-1+complete$Signatures[pink.card]+complete$Primer.ExCr[pink.card]#
-extra.credit[nopink.card]<-complete$Primer.ExCr[nopink.card]
-extra.credit
-is.na(complete$Primer.ExCr[pink.card]==TRUE)
-aux1<-which(is.na(complete$Primer.ExCr[pink.card])==TRUE
-)
-aux1
-library(devtools)
-install_github("revbayes/RevGadgets")
-sample(1:44,44,replace=FALSE)
-biocLite("ggtree")
-source("https://bioconductor.org/biocLite.R")
-?BiocUpgrade
-biocLite("BiocUpgrade")
-BiocManager::install("ggtree")
-library("BiocManager")
-biocLite("ggtree")
-read.table("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13511 TDR.xls", header=TRUE)
-scantron.retake2<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13511 TDR.csv", header=TRUE)
-head(scantron.retake2)
-scantron.retake2<-scantron.retake2[,c(1,10:82)]
-head(scantron.retake2)
-scantron.retake2<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13511 TDR.csv", header=TRUE)
-scantron.retake2<-scantron.retake2[,c(1,10:81)]
-head(scantron.retake2)
-scantron.retake2[1,]==scantron.retake2[2,]
-sum(scantron.retake2[1,]==scantron.retake2[2,])
-scantron.retake[1,2:51]
-scantron.retake2[1,2:51]
-sum(scantron.retake2[1,2;51]==scantron.retake2[2,2;51])
-sum(scantron.retake2[1,2:51]==scantron.retake2[2,2:51])
-num.students<-dim(scantron.retake2)[1]
-num.students
-head(scantron.retake2)
-scantron.retake2[1,52:73]
-i=2
-final.section2<-sum(scantron.retake2[1,52:73]==scantron.retake2[i,52:73])
-final.section2
-final.grade<-sum(scantron.retake2[1,2:51]==scantron.retake2[i,2:51])
-final.grade
-scantron.retake2<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13511 TDR.csv", header=TRUE)#
-scantron.retake2<-scantron.retake2[,c(1,10:81)]#
-num.students<-dim(scantron.retake2)[1]#
-#
-final.grade<-rep(0,num.students-1)#
-final.section2<-rep(0,num.students-1)#
-for(i in 2:num.students){#
-	final.grade[i-1]<-sum(scantron.retake2[1,2:51]==scantron.retake2[i,2:51])#
-	final.section2[i-1]<-sum(scantron.retake2[1,52:73]==scantron.retake2[i,52:73])#
-}
-new.table<-cbind(student.id=scantron.retake[2:num.students,],final.grade,final.section2)
-new.table<-cbind(student.id=scantron.retake2[2:num.students,],final.grade,final.section2)
-head(new.table)
-new.table<-cbind(student.id=scantron.retake2[2:num.students,1],final.grade,final.section2)
-head(new.table)
-final.grade<-rep(0,num.students-1)#
-final.section2<-rep(0,num.students-1)#
-for(i in 2:num.students){#
-	final.grade[i-1]<-sum(scantron.retake2[1,2:51]==scantron.retake2[i,2:51])#
-	final.section2[i-1]<-2*sum(scantron.retake2[1,52:73]==scantron.retake2[i,52:73])#
-}#
-#
-new.table<-cbind(student.id=scantron.retake2[2:num.students,1],final.grade,final.section2)
-head(new.table)
-write.csv(new.table, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/retake2.csv")
-boxplog(final.section2)
-boxplot(final.section2)
-final.section2
-hist(final.section2)
-warnings()
-par(font.axis = 2)#
-par(font.lab = 2)
-hist(final.section2)
-summary(final.section2)
-scantron.retake1<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13510 TDR.csv", header=TRUE)
-head(scantron.retake1)
-scantron.retake1<-scantron.retake1[,c(1,10:84)]
-head(scantron.retake1)
-num.students<-dim(scantron.retake1)[1]
-num.students
-im(scantron.retake1)
-dim(scantron.retake1)
-dim(scantron.retake2
-)
-final.grade<-rep(0,num.students-1)#
-final.section1<-rep(0,num.students-1)#
-for(i in 2:num.students){#
-	final.grade[i-1]<-sum(scantron.retake1[1,2:51]==scantron.retake1[i,2:51])#
-	final.section1[i-1]<-2*sum(scantron.retake1[1,52:76]==scantron.retake1[i,52:73])#
-}
-final.grade<-rep(0,num.students-1)#
-final.section1<-rep(0,num.students-1)#
-for(i in 2:num.students){#
-	final.grade[i-1]<-sum(scantron.retake1[1,2:51]==scantron.retake1[i,2:51])#
-	final.section1[i-1]<-2*sum(scantron.retake1[1,52:76]==scantron.retake1[i,52:76])#
-}
-new.table1<-cbind(student.id=scantron.retake1[2:num.students,1],final.grade,final.section1)
-new.table1
-scantron.retake1[2:num.students,1]
-final.grade
-final.section1
-hist(final.section1)
-scantron.retake1[2:num.students,1]
-new.table1<-cbind(student.id=scantron.retake1[2:num.students,1],final.grade,final.section1)
-new.table1
-scantron.retake1<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13510 TDR.csv", header=TRUE,stringsAsFactors=FALSE)
-scantron.retake1<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13510 TDR.csv", header=TRUE,stringsAsFactors=FALSE)#
-scantron.retake1<-scantron.retake1[,c(1,10:84)]#
-num.students<-dim(scantron.retake1)[1]
-final.grade<-rep(0,num.students-1)#
-final.section1<-rep(0,num.students-1)#
-for(i in 2:num.students){#
-	final.grade[i-1]<-sum(scantron.retake1[1,2:51]==scantron.retake1[i,2:51])#
-	final.section1[i-1]<-2*sum(scantron.retake1[1,52:76]==scantron.retake1[i,52:76])#
-}#
-#
-new.table1<-cbind(student.id=scantron.retake1[2:num.students,1],final.grade,final.section1)
-new.table1
-write.csv(new.table, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/retake2.csv")
-scantron.retake1<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13510 TDR.csv", header=TRUE,stringsAsFactors=FALSE)#
-scantron.retake1<-scantron.retake1[,c(1,10:84)]#
-num.students<-dim(scantron.retake1)[1]#
-#
-final.grade<-rep(0,num.students-1)#
-final.section1<-rep(0,num.students-1)#
-for(i in 2:num.students){#
-	final.grade[i-1]<-sum(scantron.retake1[1,2:51]==scantron.retake1[i,2:51])#
-	final.section1[i-1]<-2*sum(scantron.retake1[1,52:76]==scantron.retake1[i,52:76])#
-}#
-#
-new.table1<-cbind(student.id=scantron.retake1[2:num.students,1],final.grade,final.section1)
-new.table1
-write.csv(new.table, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/retake1.csv")
-scantron.noretake<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13509 TDR.csv", header=TRUE,stringsAsFactors=FALSE)
-scantron.noretake<-scantron.retake1[,c(1,10:49)]
-scantron.noretake
-scantron.noretake<-scantron.retake1[,c(1,10:51)]
-scantron.noretake<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13509 TDR.csv", header=TRUE,stringsAsFactors=FALSE)
-scantron.noretake<-scantron.noretake[,c(1,10:51)]
-head(scantron.noretake)
-scantron.noretake<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13509 TDR.csv", header=TRUE,stringsAsFactors=FALSE)
-scantron.noretake<-scantron.noretake[,c(1,10:59)]
-head(scantron.noretake)
-num.students<-dim(scantron.noretake)[1]
-dim(scantron.noretake)
-num.students
-final.grade<-rep(0,num.students-1)#
-final.noretake<-rep(0,num.students-1)
-for(i in 2:num.students){#
-	final.grade[i-1]<-sum(scantron.noretake[1,2:51]==scantron.noretake[i,2:51])#
-	}
-final.grade
-write.csv(new.table1, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/retake1.csv")
-write.csv(new.tablenoretake, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/noretake.csv")
-new.tablenoretake<-cbind(student.id=scantron.noretake[2:num.students,1],final.grade)
-write.csv(new.tablenoretake, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/noretake.csv")
-scantron.retake2<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13511 TDR.csv", header=TRUE)#
-scantron.retake2<-scantron.retake2[,c(1,10:81)]#
-num.students<-dim(scantron.retake2)[1]#
-#
-final.grade2<-rep(0,num.students-1)#
-final.section2<-rep(0,num.students-1)#
-for(i in 2:num.students){#
-	final.grade2[i-1]<-sum(scantron.retake2[1,2:51]==scantron.retake2[i,2:51])#
-	final.section2[i-1]<-2*sum(scantron.retake2[1,52:73]==scantron.retake2[i,52:73])#
-}#
-#
-new.table<-cbind(student.id=scantron.retake2[2:num.students,1],final.grade2,final.section2)#
-write.csv(new.table, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/retake2.csv")#
-#
-scantron.retake1<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13510 TDR.csv", header=TRUE,stringsAsFactors=FALSE)#
-scantron.retake1<-scantron.retake1[,c(1,10:84)]#
-num.students<-dim(scantron.retake1)[1]#
-#
-final.grade1<-rep(0,num.students-1)#
-final.section1<-rep(0,num.students-1)#
-for(i in 2:num.students){#
-	final.grade1[i-1]<-sum(scantron.retake1[1,2:51]==scantron.retake1[i,2:51])#
-	final.section1[i-1]<-2*sum(scantron.retake1[1,52:76]==scantron.retake1[i,52:76])#
-}#
-#
-new.table1<-cbind(student.id=scantron.retake1[2:num.students,1],final.grade1,final.section1)#
-write.csv(new.table1, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/retake1.csv")#
-scantron.noretake<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/13509 TDR.csv", header=TRUE,stringsAsFactors=FALSE)#
-scantron.noretake<-scantron.noretake[,c(1,10:59)]#
-num.students<-dim(scantron.noretake)[1]#
-#
-final.grade<-rep(0,num.students-1)#
-#
-for(i in 2:num.students){#
-	final.grade[i-1]<-sum(scantron.noretake[1,2:51]==scantron.noretake[i,2:51])#
-	}#
-new.tablenoretake<-cbind(student.id=scantron.noretake[2:num.students,1],final.grade)#
-write.csv(new.tablenoretake, file="~/Dropbox/Teaching/Biol171/Spring2019/Final grades/noretake.csv")
-finalgrades<-cbind(student.id=scantron.noretake[-1,1],final.grade)
-all.gradebook<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/allgradebookbeforefinal.csv#
-", header=TRUE, stringsAsFactors=FALSE,na.strings="")#
-#
-final.read<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/finalstraight.csv", header=TRUE,stringsAsFactors=FALSE,na.strings="")
-all.gradebook<-read.csv("~/Dropbox/Teaching/Biol171/Spring2019/Final grades/allgradebookbeforefinal.csv", header=TRUE, stringsAsFactors=FALSE,na.strings="")
-head(all.gradebook)
 4+4+5+6+4+5+3+3+4+2+2+2+4+6+6+6+5+9+7+2+2
 88/91
 91*.8
@@ -454,6 +251,25 @@ ggplot(quiz.dataset, aes(x = date, y =average.quiz)) + #
   geom_point(aes(color = viridis(3), size = youtube.views), alpha = 0.5) +scale_size(range=c(30,50))
 ggplot(quiz.dataset, aes(x = date, y =average.quiz)) + #
   geom_point(aes(color = viridis(3), size = youtube.views), alpha = 0.5) +scale_size(range=c(10,20))
+library("treeplyr")#
+library("ape")#
+library("phytools")#
+genus.tree<-read.tree("~/Dropbox/Pollinatordiv/genus SSE/genustree.tre")#
+genus.data<-read.csv("~/Dropbox/Pollinatordiv/genus SSE/genusstate.csv")
+matched<-make.treedata(genus.tree,genus.data)
+is.binary(genus.tree)
+plot(genus.tree,type="fan")
+genus.tree<-multi2di(genus.tree)
+is.binary(genus.tree)
+matched<-make.treedata(genus.tree,genus.data)
+aux<-pull(matched$dat[,1])
+tip.labels<-matched$phy$tip.label
+write.csv(tip.labels, file="~/Dropbox/Pollinatordiv/genus SSE/labels.csv", row.names=FALSE)
+write.table(aux,file="~/Dropbox/Pollinatordiv/gstates.tsv",col.names=FALSE,sep="\t",row.names=FALSE)
+write.table(aux,file="~/Dropbox/Pollinatordiv/genusstates.tsv",col.names=FALSE,sep="\t",row.names=FALSE)
+write.nexus(matched$phy, file="~/Dropbox/Pollinatordiv/genustree.nex")
+tip.labels<-matched$phy$tip.label
+write.csv(tip.labels, file="~/Dropbox/Pollinatordiv/genus SSE/labels.csv", row.names=FALSE)
 library("ggplot2")#
 library("wesanderson")#
 library("viridis")#
@@ -461,9 +277,7 @@ library("inlmisc")#
 #
 ### Colors#
 cols<-c(wes_palette("Zissou1"),wes_palette("Darjeeling1"),wes_palette("GrandBudapest2"))#
-cols2<-c(inlmisc::GetTolColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))
-cols2<-c(inlmisc::GetColors(9, scheme = "muted"),inlmisc::GetTolColors(9, scheme = "light"))
-cols2<-c(inlmisc::GetColors(9, scheme = "muted"),inlmisc::GetColors(9, scheme = "light"))
+cols2<-c(inlmisc::GetColors(9, scheme = "muted"),inlmisc::GetColors(9, scheme = "light"))#
 mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgoldenrod1","blue3","firebrick3")#
 #cols2<- c("#7b3294","#c2a5cf","#a6dba0","#008837","#ffffbf")#
 #cols3<-c("#ece2f0", "#67a9cf","#e31a1c","#fd8d3c","#02818a","#014636")#
@@ -471,7 +285,396 @@ mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgold
 #sampling<-seq(1,250000,100)#
 ### Plots for diversification rates Bisse DP with diploidization#
 setwd("~/Dropbox/nestdivmodel/revcode/Figures")
+source("multiplot.R")
+### First run of the 3 states with the minimum of extinction 0.8 of speciation and extra for each state#
+#
 output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv2.log", header=TRUE)#
-output.sse<-output.sse[-c(1:500),]
+output.sse<-output.sse[-c(1:500),]#
+#
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
+#
+delta<-data.frame(dens=output.sse$extra,Type=rep("delta",each=length(output.sse$extra)))#
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3.1<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = "purple")#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv3.log", header=TRUE)#
+output.sse<-output.sse[-c(1:500),]#
+#
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3.1<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))
+multiplot(p1,p3.1,p5,p2,p4,ncols=2)
+multiplot(p1,p3.1,p5,p2,p4,cols=2)
+1/1.5
+1/1.5^2
+1/(1.5^2)
+0.5/0.25
+0.5/0.25^2
+50*.5/200
+40*.5
+40*.5/200
+40*0.5/160
+library("ggplot2")#
+library("wesanderson")#
+library("viridis")#
+library("inlmisc")#
+#
+### Colors#
+cols<-c(wes_palette("Zissou1"),wes_palette("Darjeeling1"),wes_palette("GrandBudapest2"))#
+cols2<-c(inlmisc::GetColors(9, scheme = "muted"),inlmisc::GetColors(9, scheme = "light"))#
+mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgoldenrod1","blue3","firebrick3")#
+#cols2<- c("#7b3294","#c2a5cf","#a6dba0","#008837","#ffffbf")#
+#cols3<-c("#ece2f0", "#67a9cf","#e31a1c","#fd8d3c","#02818a","#014636")#
+#cols4<-c(cols[4],"#fdb863","#542788","#b2abd2","#f7f7f7",cols[2])#
+#sampling<-seq(1,250000,100)#
+### Plots for diversification rates Bisse DP with diploidization#
+setwd("~/Dropbox/nestdivmodel/revcode/Figures")#
+source("multiplot.R")
+### First run of the 3 states with the minimum of extinction 0.8 of speciation and extra for each state#
+#
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv3.log", header=TRUE)#
+output.sse<-output.sse[-c(1:500),]#
+#
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
+#
+delta<-data.frame(dens=c(output.sse$extra.1,output.sse$extra.2,output.sse$extra.3),Type=rep(c("delta_1","delta_2","delta_3"),each=length(output.sse$extra1)))#
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3.1<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(3))#
+multiplot(p1,p3.1,p5,p2,p4,cols=2)
 output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv2.log", header=TRUE)
-output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv2.log", header=TRUE)
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results/MuSSE3minv2.log", header=TRUE)#
+output.sse<-output.sse[-c(1:500),]#
+#
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
+#
+delta<-data.frame(dens=c(output.sse$extra.1,output.sse$extra.2,output.sse$extra.3),Type=rep(c("delta_1","delta_2","delta_3"),each=length(output.sse$extra1)))#
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3.1<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(3))#
+#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+ln(3225/2)
+log(3225/2)
+1/1.5
+1/2
+1/4
+library("ggplot2")#
+library("wesanderson")#
+library("viridis")#
+library("inlmisc")
+cols<-c(wes_palette("Zissou1"),wes_palette("Darjeeling1"),wes_palette("GrandBudapest2"))#
+cols2<-c(inlmisc::GetColors(9, scheme = "muted"),inlmisc::GetColors(9, scheme = "light"))
+mypalette<-c(cols[3],cols[1],cols[5],cols[7],cols[9],cols[11],cols[12],"darkgoldenrod1","blue3","firebrick3")
+setwd("~/Dropbox/nestdivmodel/revcode/Figures")
+source("multiplot.R")
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results_longruns/MuSSE3minv2.log", header=TRUE)
+head(output.sse)
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
+delta<-data.frame(dens=c(output.sse$extra.1,output.sse$extra.2,output.sse$extra.3),Type=rep(c("delta_1","delta_2","delta_3"),each=length(output.sse$extra.1)))#
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3.1<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(3))#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results_longruns/musse3min_exp05.log", header=TRUE)#
+output.sse<-output.sse[-seq(1,5000,1),]
+head(output.sse)
+dim(output.sse)
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
+delta<-data.frame(dens=c(output.sse$extra.1,output.sse$extra.2,output.sse$extra.3),Type=rep(c("delta_1","delta_2","delta_3"),each=length(output.sse$extra.1)))#
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3.1<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(3))#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = cols2[1:3])#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.6)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = cols2[1:3])
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.6)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = plasma(3))#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.3)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = plasma(3))#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.3)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.3)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = inferno(3))
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.3)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.3)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("green","white","red"))#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))#
+multiplot(p1,p3.1,p5,p2,p4,p6, cols=2)
+a<-rexp(1000,rate=2)
+hist(a)
+?rexp
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results_longruns/MuSSE3min_gammavar2.log", header=TRUE)
+output.sse<-output.sse[-seq(1,5000,1),] #burn-in removal 5000 steps
+dim(output.sse)
+setwd("~/Dropbox/nestdivmodel/revcode/Figures")#
+source("multiplot.R")#
+### Long run MuSSE no restrictions on extinction#
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results_longruns/MuSSE3min_gammavar2.log", header=TRUE)#
+output.sse<-output.sse[-seq(1,5000,1),] #burn-in removal 5000 steps#
+#
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
+delta<-data.frame(dens=c(output.sse$extra.1,output.sse$extra.2,output.sse$extra.3),Type=rep(c("delta_1","delta_2","delta_3"),each=length(output.sse$extra.1)))#
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3.2<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))
+multiplot(p1,p3.2,p5,p2,p4,p6, cols=2)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.002)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.002)#
+multiplot(p1,p3.2,p5,p2,p4,p6, cols=2)
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3.2<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.001)#
+multiplot(p1,p3.2,p5,p2,p4,p6, cols=2)
+0.25/(0.25^2)
+## Musse 3 state with a minimum of 0.8 x speciation + delta where delta ~ Gamma(alpha=0.25, beta=0.25) that is mean 1 and variance (4)#
+#
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results_longruns/MuSSE3min_gammavar4.log", header=TRUE)#
+output.sse<-output.sse[-seq(1,5000,1),] #burn-in removal 5000 steps#
+#
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))#
+delta<-data.frame(dens=c(output.sse$extra.1,output.sse$extra.2,output.sse$extra.3),Type=rep(c("delta_1","delta_2","delta_3"),each=length(output.sse$extra.1)))#
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])
+p3.3<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.001)
+multiplot(p1,p3.3,p5,p2,p4,p6, cols=2)
+multiplot(p3.1, p3.2, p3.3, cols=1)
+output.sse<-read.table("~/Dropbox/nestdivmodel/revcode/results_longruns/MuSSE_threestate.log", header=TRUE)
+output.sse<-output.sse[-seq(1,5000,1),] #burn-in removal 5000 steps
+dim(output.sse)
+sse.extinction<-data.frame(dens=c(output.sse$extinction.1,output.sse$extinction.2, output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$extinction.1)))#
+#
+sse.speciation<-data.frame(dens=c(output.sse$speciation.1,output.sse$speciation.2,output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.netdiv<-data.frame(dens=c(output.sse$speciation.1-output.sse$extinction.1,output.sse$speciation.2-output.sse$extinction.2, output.sse$speciation.3-output.sse$extinction.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+sse.reldiv<-data.frame(dens=c(output.sse$extinction.1/output.sse$speciation.1,output.sse$extinction.2/output.sse$speciation.2, output.sse$extinction.3/output.sse$speciation.3),Type=rep(c("Dome","Cup","Cavity"),each=length(output.sse$speciation.1)))#
+#
+trait.rates<-data.frame(dens=c(output.sse$q_12,output.sse$q_21,output.sse$q_23,output.sse$q_32,output.sse$q_13,output.sse$q_31),Type=rep(c("q_12","q_21","q_23","q_32","q_13","q_31"),each=length(output.sse$q_12)))
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])+xlim(0.8,0.81)#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))
+multiplot(p1,p3,p5,p2,p4,p6, cols=2)
+p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p2<-ggplot(sse.extinction, aes(x=dens, fill=Type))+labs(title="Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values =mypalette[1:3])#
+#
+p3<-ggplot(sse.netdiv, aes(x=dens, fill=Type))+labs(title="Net Diversification",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+#
+p4<-ggplot(sse.reldiv, aes(x=dens, fill=Type))+labs(title="Relative Extinction",x="Rate", y="Posterior Density")+geom_density(alpha=0.8)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),#
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette[1:3])#
+p5<-ggplot(trait.rates, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))#
+#
+multiplot(p1,p3,p5,p2,p4,cols=2)
+p3.1
+multiplot(p3,p3.1, p3.2, p3.3, cols=1)
+multiplot(p3,p3.1, p3.2, p3.3, cols=1)
+p3+xlim(0.025,0.14)
+g1<-p3+xlim(0.025,0.14)#
+g2<-p3.1+xlim(0.025,0.14)#
+g3<-p3.2+xlim(0.025,0.14)#
+g4<-p3.3+xlim(0.025,0.14)
+multiplot(g1,g2,g3,g4, cols=1)
+p6.1<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))
+p6.1
+p6.1<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.001)
+p6.1
+p6.1<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.0005)
+p6.1
+p6.1<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.0003)
+p6.1
+p6.2<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.0003)
+multiplot(p1,p3.2,p5,p2,p4,p6.2, cols=2)
+p6.2
+p6.3<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red")+xlim(0,0.0003)
+p6.3
+p6.3
+p6.3<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red")+xlim(0,0.0003)
+p6.3<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.0003)
+p6<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.001)
+p6.3<-ggplot(delta, aes(x=dens, fill=Type))+labs(title="Difference parameter",x="Rate", y="Posterior Density")+geom_density(alpha=0.5)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = c("blue","white","red"))+xlim(0,0.0003)
+p6.3
+multiplot(p6.1,p6.2,p6.3)

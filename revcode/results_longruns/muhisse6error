@@ -1,0 +1,4 @@
+
+Lmod is automatically replacing "gcc/5.2.0" with "intel/2018.1.163".
+
+/tmp/slurmd/job50942791/slurm_script: line 20: 24427 Segmentation fault      (core dumped) rb /ufrc/burleigh/rzenil/nido/muhisse6state.Rev
