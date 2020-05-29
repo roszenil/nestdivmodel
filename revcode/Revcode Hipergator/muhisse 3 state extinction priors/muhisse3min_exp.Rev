@@ -3,7 +3,7 @@
 # MuHiSSE for Three State Nest Evolution Models extinction at least 0.8 with extra as exponential with mean 0.5 var 0.25
 #
 # authors: Rosana Zenil-Ferguson
-# Last updated: 05/11/2020
+# Last updated: 05/21/2020
 ####################################################################################################
 
 setOption("useScaling", "true")
@@ -45,7 +45,7 @@ for (i in 1:NUM_STATES) {
 
 ### Create a lognormal distributed variable for the diversification rate
 speciation_alpha[i] ~ dnNormal(mean=rate_mean,sd=rate_sd)
-moves[++mvi] = mvSlide(speciation_alpha[i],delta=0.20,tune=true,weight=3.0)
+moves[++mvi] = mvSlide(speciation_alpha[i],delta=0.20,tune=true,weight=1.0)
 
 }
 
@@ -53,7 +53,7 @@ for (i in 1:NUM_HIDDEN) {
 
 ### Create an exponential distributed variable for the diversification rate
 speciation_beta[i] ~ dnExp(1.0)
-moves[++mvi] = mvSlide(speciation_beta[i],delta=0.20,tune=true,weight=2.0)
+moves[++mvi] = mvSlide(speciation_beta[i],delta=0.20,tune=true,weight=1.0)
 
 }
 

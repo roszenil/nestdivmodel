@@ -1,0 +1,260 @@
+####################################################################################################
+#
+# MuHiSSE for Six State Nest Evolution Models
+#
+# authors: Rosana Zenil-Ferguson
+# Last updated: 04/26/2020
+####################################################################################################
+
+setOption("useScaling", "true")
+
+#IMPORTANT: Change base directory depending on location of the run
+#mine here is  /ufrc/burleigh/rzenil/nido make sure to change (Both input and output files require it)
+
+NUM_STATES=6
+NUM_HIDDEN = 2
+NUM_RATES = NUM_STATES * NUM_HIDDEN
+#########################
+# Read in the data
+#########################
+observed_phylogeny <- readTrees("/ufrc/burleigh/rzenil/nido/nesttree.nex")[1]
+data <- readCharacterDataDelimited("/ufrc/burleigh/rzenil/nido/nestsixstate.tsv",stateLabels=6,type="NaturalNumbers",delimiter="\t",headers=FALSE)
+# Get some useful variables from the data. We need these later on
+taxa <- observed_phylogeny.taxa()
+data_exp <- data.expandCharacters(2)
+
+# set my move index
+mvi = 0
+mni = 0
+
+H = 0.587405
+
+####################
+# Create the rates #
+####################
+
+### Specify a prior on the diversification and turnover rate
+
+### Create the constant prior parameters of the diversification rates
+## Number of surviving lineages is 3225
+rate_mean <- ln( ln(3225/2.0) / observed_phylogeny.rootAge() )
+rate_sd <- 2*H
+
+for (i in 1:NUM_STATES) {
+### Create a lognormal distributed variable for the diversification rate
+speciation_alpha[i] ~ dnNormal(mean=rate_mean,sd=rate_sd)
+moves[++mvi] = mvSlide(speciation_alpha[i],delta=0.20,tune=true,weight=3.0)
+
+### Create a lognormal distributed variable for the turnover rate
+extinction_alpha[i]~ dnNormal(mean=rate_mean,sd=rate_sd)
+moves[++mvi] = mvSlide(extinction_alpha[i],delta=0.20,tune=true,weight=3.0)
+}
+
+for (i in 1:NUM_HIDDEN) {
+### Create an exponential distributed variable for the diversification rate
+speciation_beta[i] ~ dnNormal(0.0,1.0)
+moves[++mvi] = mvSlide(speciation_beta[i],delta=0.20,tune=true,weight=2.0)
+
+### Create an normal distributed variable for the turnover rate
+extinction_beta[i] ~ dnNormal(0.0,1.0)
+moves[++mvi] = mvSlide(extinction_beta[i],delta=0.20,tune=true,weight=2.0)
+}
+
+
+speciation[1] := exp( speciation_alpha[1] )
+extinction[1] := exp( extinction_alpha[1] )
+
+speciation[2] := exp( speciation_alpha[2] )
+extinction[2] := exp( extinction_alpha[2] )
+
+speciation[3] := exp( speciation_alpha[3] )
+extinction[3] := exp( extinction_alpha[3] )
+
+speciation[4] := 0
+extinction[4] := 0
+
+speciation[5] := 0
+extinction[5] := 0
+
+speciation[6] := 0
+extinction[6] := 0
+
+speciation[7] := speciation[1] * exp( speciation_beta[1] )
+extinction[7] := exp( extinction_alpha[1] + extinction_beta[1] )
+
+speciation[8] := speciation[2] * exp( speciation_beta[1] )
+extinction[8] := exp( extinction_alpha[2] + extinction_beta[1] )
+
+speciation[9] := speciation[3] * exp( speciation_beta[1] )
+extinction[9] := exp( extinction_alpha[3] + extinction_beta[1] )
+
+speciation[10] := 0
+extinction[10] := 0
+
+speciation[11] := 0
+extinction[11] := 0
+
+speciation[12] := 0
+extinction[12] := 0
+
+
+#########################################################
+# Set up the transition rate matrix for observed states #
+#########################################################
+## I defined very loosely my gamma priors for rate  of polyploidy in the Q-mat
+shape_pr := 0.5
+#rate_pr := 1
+############### Alternative definition or rate parameter
+# Each transition rate between observed states are drawn
+# from an exponential distribution with a mean of 50
+# character state transitions over the tree.
+ rate_pr := observed_phylogeny.treeLength() / 50
+
+### Rate parameters in the Q matrix that aren't zero
+q_12 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome to Cup
+q_21 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cup to Dome
+q_23 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cup to Cavity
+q_32 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cavity to Cup
+q_13 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome to Cavity
+q_31 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cavity to Dome
+q_14 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome to Dome and Cup
+q_41 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome and Cup to Dome only
+q_25 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cup to Cup and Cavity
+q_52 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cup and Cavity to Cup only
+q_36 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cavity to Dome and Cavity
+q_63 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome and Cavity to Cavity only
+q_16 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome to Dome and Cavity
+q_61 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome and Cavity to Dome only
+q_24 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cup to Dome and Cup
+q_42 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome and Cup  to Cup only
+q_35 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cavity to Cup and Cavity
+q_53 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cup and Cavity to Cavity only
+
+
+moves[++mvi] = mvScale( q_12, weight=2 )
+moves[++mvi] = mvScale( q_21, weight=2 )
+moves[++mvi] = mvScale( q_23, weight=2 )
+moves[++mvi] = mvScale( q_32, weight=2 )
+moves[++mvi] = mvScale( q_13, weight=2 )
+moves[++mvi] = mvScale( q_31, weight=2 )
+moves[++mvi] = mvScale( q_14, weight=2 )
+moves[++mvi] = mvScale( q_41, weight=2 )
+moves[++mvi] = mvScale( q_25, weight=2 )
+moves[++mvi] = mvScale( q_52, weight=2 )
+moves[++mvi] = mvScale( q_36, weight=2 )
+moves[++mvi] = mvScale( q_63, weight=2 )
+moves[++mvi] = mvScale( q_16, weight=2 )
+moves[++mvi] = mvScale( q_61, weight=2 )
+moves[++mvi] = mvScale( q_24, weight=2 )
+moves[++mvi] = mvScale( q_42, weight=2 )
+moves[++mvi] = mvScale( q_35, weight=2 )
+moves[++mvi] = mvScale( q_53, weight=2 )
+
+
+# first initialize the matrix with all zeros:
+for (i in 1:6) {
+for (j in 1:6) {
+q[i][j] := 0.0
+}
+}
+q[1][2] := q_12
+q[2][1] := q_21
+q[2][3] := q_23
+q[3][2] := q_32
+q[1][3] := q_13
+q[3][1] := q_31
+q[1][4] := q_14
+q[4][1] := q_41
+q[2][5] := q_25
+q[5][2] := q_52
+q[3][6] := q_36
+q[6][3] := q_63
+q[1][6] := q_16
+q[6][1] := q_61
+q[2][4] := q_24
+q[4][2] := q_42
+q[3][5] := q_35
+q[5][3] := q_53
+
+# generate the actual matrix
+Q := fnFreeK(q, rescaled=false, matrixExponentialMethod="scalingAndSquaring")
+
+#########################################################
+# Set up the transition rate matrix for hidden states #
+#########################################################
+
+# We assume the transitions among the hidden states
+# are all equal and drawn from an exponential distriubtion.
+hidden_rate1 ~ dnExponential(rate_pr)
+moves[++mvi] = mvScale(hidden_rate1,lambda=0.2,tune=true,weight=5)
+hidden_rate2 ~ dnExponential(rate_pr)
+moves[++mvi] = mvScale(hidden_rate2,lambda=0.2,tune=true,weight=5)
+#### Here the hidden rates should go (alpha,beta, alpha, beta) for assymetrical models
+R[1]:= hidden_rate1
+R[2]:= hidden_rate2
+######################################################################
+# Create the rate matrix for the combined observed and hidden states #
+######################################################################
+rate_matrix := fnHiddenStateRateMatrix(Q, R, rescaled=false)
+
+
+### Create a constant variable with the prior probabilities of each rate category at the root.
+rate_category_prior ~ dnDirichlet( rep(1,NUM_RATES) )
+moves[++mvi] = mvDirichletSimplex(rate_category_prior,tune=true,weight=2)
+moves[++mvi] = mvBetaSimplex(rate_category_prior,tune=true,weight=2)
+
+### Create the fix parameter for the age of the root set to the observed age
+root <- observed_phylogeny.rootAge()
+
+### rho is the probability of sampling species at the present
+### I did not add any sampling of species but it is posible by setting this rho parameter
+### 6321 possible passerines
+rho <- observed_phylogeny.ntips()/6321
+
+#### construct a variable for the tree drawn from a birth death process
+timetree ~ dnCDBDP( rootAge = root,
+speciationRates   = speciation,
+extinctionRates   = extinction,
+Q                 = rate_matrix,
+pi                = rate_category_prior,
+rho               = rho,
+delta             = 1.0)
+
+### clamp the model with the "observed" tree
+timetree.clamp( observed_phylogeny )
+timetree.clampCharData( data_exp )
+#############
+# The Model #
+#############
+
+
+### workspace model wrapper ###
+mymodel = model(rate_matrix)
+
+### set up the monitors that will output parameter values to file and screen
+monitors[++mni] = mnModel(filename="/ufrc/burleigh/rzenil/nido/output/MuHiSSE_sixstate.log", printgen=1)
+#monitors[++mni] = mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=100, withTips=true, withStartStates=false, filename="/ufrc/burleigh/rzenil/nido/output/anc_states_MuHiSSE_sixstate.log")
+#monitors[++mni] = mnScreen(printgen=10, rate_matrix, R, speciation, extinction)
+################
+# The Analysis #
+################
+
+### workspace mcmc
+mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
+
+### pre-burnin to tune the proposals
+#mymcmc.burnin(generations=5000,tuningInterval=100)
+
+### run the MCMC
+mymcmc.run(generations=150000)
+
+##############################
+# Summarize ancestral states #
+##############################
+## We will run this later locally
+
+#anc_states = readAncestralStateTrace("/home/eeg/shared/twostatesse/nest/output/anc_states_MuHiSSE_sixstate.log")
+#anc_tree = ancestralStateTree(tree=observed_phylogeny, ancestral_state_trace_vector=anc_states, include_start_states=false, file="/home/eeg/shared/twostatesse/nest/output/anc_states_summaryMuHiSSEsixstate.tree", burnin=5000, summary_statistic="MAP", site=0)
+
+q()
+
