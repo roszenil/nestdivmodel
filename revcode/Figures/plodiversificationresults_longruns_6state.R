@@ -59,6 +59,8 @@ data.frame(dens=c(output.sse$q_61,output.sse$q_63),Type=rep(c("q_61","q_63"),eac
 trait.rates12<-
 data.frame(dens=c(output.sse$q_16,output.sse$q_36),Type=rep(c("q_16","q_36"),each=length(output.sse$q_16)))
 
+trait.rates6params<-
+data.frame(dens=c(output.sse$q_12,output.sse$q_13,output.sse$q_21,output.sse$q_23,output.sse$q_31,output.sse$q_32),Type=rep(c("q_12","q_13","q_21","q_23","q_31","q_32"),each=length(output.sse$q_12)))
 
 
 p1<-ggplot(sse.speciation, aes(x=dens, fill=Type))+labs(title="Speciation",x="Rate", y="Posterior Density")+geom_density(alpha=0.9)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -98,6 +100,8 @@ p14<-ggplot(trait.rates10, aes(x=dens, fill=Type))+labs(title="Trait change",x="
 p15<-ggplot(trait.rates11, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[17:18])+xlim(0,0.6)
 
 p16<-ggplot(trait.rates12, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="Posterior Density")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = mypalette2[c(4,12)])
+
+p17<-ggplot(trait.rates6params, aes(x=dens, fill=Type))+labs(title="Trait change",x="Rate", y="PosteriorDensity")+geom_density(aes(linetype=Type),alpha=0.7)+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))+scale_fill_manual( values = viridis(6))
 
 multiplot(p5,p7,p9,p6,p8,p10,cols=2)
 multiplot(p11,p13,p15,p12,p14,p16, cols=2)

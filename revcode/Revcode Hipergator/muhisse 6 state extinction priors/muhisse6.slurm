@@ -2,7 +2,7 @@
 #SBATCH --job-name=muhisse6
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=10-00:00:00
+#SBATCH --time=30-00:00:00
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=5G
 #SBATCH  --account=burleigh

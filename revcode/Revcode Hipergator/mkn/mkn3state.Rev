@@ -1,0 +1,108 @@
+#########################################################################################################
+#
+## Mkn: Model for three state nest evolution
+##
+## Autor: Rosana Zenil-Ferguson
+## Last update: RZF 06/11/2020
+#########################################################################################################
+
+
+# Some necessary defaults
+setOption("useScaling", "true")
+
+NUM_STATES=3
+
+# set my move index
+mvi = 0
+mni = 0
+#########################
+# Read in the data
+#########################
+observed_phylogeny <- readTrees("/ufrc/burleigh/rzenil/nido/nesttree.nex")[1]
+#observed_phylogeny <- readTrees("basicdata/nesttree.nex")[1]
+data <- readCharacterDataDelimited("/ufrc/burleigh/rzenil/nido/nestthreestate.tsv",stateLabels=3,type="NaturalNumbers",delimiter="\t",headers=FALSE)
+
+#data <- readCharacterDataDelimited("basicdata/nestthreestate.tsv",stateLabels=3,type="NaturalNumbers",delimiter="\t",headers=FALSE)
+
+# Get some useful variables from the data. We need these later on
+taxa <- observed_phylogeny.taxa()
+
+#### Rates for the Q-matrix
+shape_pr := 0.5
+rate_pr = observed_phylogeny.treeLength()/50
+
+q_12 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome to Cup
+q_21 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cup to Dome
+q_23 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cup to Cavity
+q_32 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cavity to Cup
+q_13 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Dome to Cavity
+q_31 ~ dnGamma(shape=shape_pr, rate=rate_pr) ### Cavity to Dome
+
+moves[++mvi] = mvScale( q_12, weight=2 )
+moves[++mvi] = mvScale( q_21, weight=2 )
+moves[++mvi] = mvScale( q_23, weight=2 )
+moves[++mvi] = mvScale( q_32, weight=2 )
+moves[++mvi] = mvScale( q_13, weight=2 )
+moves[++mvi] = mvScale( q_31, weight=2 )
+
+
+
+### Mk2 model start with a matrix full of zeros
+for (i in 1:3){
+for (j in 1:3){
+        q[i][j]:= 0.0
+    }
+}
+####
+q[1][2] := q_12
+q[2][1] := q_21
+q[2][3] := q_23
+q[3][2] := q_31
+q[1][3] := q_13
+q[3][1] := q_31
+
+# Define Q-matrix infinitesimal probability
+rate_matrix := fnFreeK(q, rescaled=false, matrixExponentialMethod="scalingAndSquaring")
+
+# Root here is assumed to be another parameter (random)
+root_frequencies ~ dnDirichlet(rep(1,NUM_STATES))
+moves[++mvi] = mvBetaSimplex(root_frequencies, alpha=0.5, weight=3)
+moves[++mvi] = mvElementSwapSimplex(root_frequencies, weight=3)
+
+# Define the continuous time markov model
+ctmc ~ dnPhyloCTMC(Q= rate_matrix, tree=observed_phylogeny, nSites=1, rootFreq=root_frequencies, type="NaturalNumbers")
+#Fix our observations of selfing to the tips
+ctmc.clamp(data)
+
+
+#########################
+# MCMC
+#########################
+# Grab all the nodes in amodel
+mymodel = model(rate_matrix)
+
+
+# Output what we are going to see
+monitors[++mni] = mnModel(filename="/ufrc/burleigh/rzenil/nido/output/mkn_3state.log", printgen=1)
+monitors[++mni] = mnScreen(printgen=10,q_12,q_21,q_23,q_32,q_13,q_31)
+monitors[++mni] = mnJointConditionalAncestralState(filename="/ufrc/burleigh/rzenil/nido/output/asr_3state.log",printgen=100,tree=observed_phylogeny,ctmc=ctmc,type="NaturalNumbers")
+monitors[++mni] = mnStochasticCharacterMap(ctmc=ctmc,printgen=100,filename="/ufrc/burleigh/rzenil/nido/output/stoch_maps_3state.log", include_simmap=true)
+
+
+
+mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
+mymcmc.run(120000)
+
+
+#########################
+# Ancestral reconstructions
+#########################
+
+
+# now let's summarize the sampled ancestral states
+#anc_state_trace = readAncestralStateTrace("output/anc_statespoledis.log")
+ancestralStateTree(observed_phylogeny, anc_state_trace, "output/finalpoledis.tree", burnin=0.25, reconstruction="marginal")
+
+#anc_state_trace = readAncestralStateTrace("output/stoch_mapspoledis.log")
+characterMapTree(observed_phylogeny, anc_state_trace, character_file="output/character_pole.tree", posterior_file="output/posteriorpole.tree", burnin=5, reconstruction="marginal")
+q()
